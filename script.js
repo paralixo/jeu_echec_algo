@@ -105,16 +105,16 @@ window.onload = function() {
         this.init = function() {
             for (i in cases) {
                 if (cases[i].positionX == this.positionX && cases[i].positionY == this.positionY) {
-                    dessinerCercle("#FF4422", this.positionX, this.positionY);
-                    
+                  //  dessinerCercle("#FF4422", this.positionX, this.positionY);
+
                     var x_pion = this.positionX * tailleBloc;
                     var y_pion = this.positionY * tailleBloc
                     var myImg = new Image();
                     myImg.onload = function() {
-                        ctx.drawImage(myImg, 900, 275, 960, 360, x_pion, y_pion, 1000, 300);
+                        ctx.drawImage(myImg, 900, 275, 1000, 370, x_pion+12.5, y_pion+5, 900, 300);
                     };
                     myImg.src = 'pieces.png';
-                    
+
                     cases[i].contient = this.nom;
                 }
             }
@@ -126,12 +126,22 @@ window.onload = function() {
         }
     }
 
-    function dessinerCercle(color, x, y) {
+function initPiece(){
+	var i =0;
+		while (i!=9) {
+				pieces.push(new piece("pion",i,6));
+				i++;
+		}
+actualisationPieces();
+
+
+}
+    /*function dessinerCercle(color, x, y) {
         ctx.beginPath();
         ctx.fillStyle=color;
         ctx.arc(x*tailleBloc+tailleBloc/2, y*tailleBloc+tailleBloc/2, tailleBloc/2.5, 0, 2 * Math.PI);
         ctx.fill();
-    }
+    }*/
 
     // trouver position de la souris relative au canvas
     function trouverPosition(element) {
@@ -149,7 +159,7 @@ window.onload = function() {
 
     afficherFond();
 
-    pieces[0] = new piece("pion", 4, 5);
+  /*  pieces[0] = new piece("pion", 4, 5);
     pieces[0].init();
 
     pieces[1] = new piece("pion", 3, 4);
@@ -161,9 +171,9 @@ window.onload = function() {
     pieces[3] = new piece("pion", 3, 2);
     pieces[3].init();
 
-    
+    piece[]*/
 
-
+		initPiece();
     // Si on clique sur le canvas
     canvas.onclick = function(e) {
 
