@@ -123,6 +123,16 @@ window.onload = function() {
                 this.attaque = [[this.positionX-1, this.positionY-1], [this.positionX+1, this.positionY-1]];
                 this.mouvementSpecial = [[this.positionX, this.positionY-2]];
             }
+            if (this.nom == "tour") {
+                for (var i = 0; i < 8; i++) {
+                    this.mouvement.push([this.positionX, this.positionY+i])
+                    this.mouvement.push([this.positionX, this.positionY-i])
+                    this.mouvement.push([this.positionX+i, this.positionY])
+                    this.mouvement.push([this.positionX-i, this.positionY])
+                }
+                this.attaque = this.mouvement;
+                this.mouvementSpecial = "le truc avec le roi";
+            }
         }
     }
 
@@ -173,7 +183,8 @@ actualisationPieces();
 
     piece[]*/
 
-		initPiece();
+    initPiece();
+    
     // Si on clique sur le canvas
     canvas.onclick = function(e) {
 
