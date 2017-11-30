@@ -106,13 +106,6 @@ window.onload = function() {
             for (i in cases) {
                 if (cases[i].positionX == this.positionX && cases[i].positionY == this.positionY) {
                     dessinerCercle("#FF4422", this.positionX, this.positionY);
-                    
-                    var myImg = new Image();
-                    myImg.onload = function() {
-                        ctx.drawImage(myImg, 900, 275, 960, 360, x*tailleBloc, y*tailleBloc, 1000, 300);
-                    };
-                    myImg.src = 'pieces.png';
-                    
                     cases[i].contient = this.nom;
                 }
             }
@@ -158,12 +151,6 @@ window.onload = function() {
 
     pieces[3] = new piece("pion", 3, 2);
     pieces[3].init();
-<<<<<<< HEAD
-    
-    
-    
-    
-=======
 
     var myImg = new Image();
     myImg.onload = function() {
@@ -172,7 +159,6 @@ window.onload = function() {
     myImg.src = 'pieces.png';
 
 
->>>>>>> 64b858ca8aba857a0eba6c22ff248cf9dc8555fb
     // Si on clique sur le canvas
     canvas.onclick = function(e) {
 
