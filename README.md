@@ -12,14 +12,71 @@ if (this.nom == "pion") {
 
 if (this.nom == "tour") {
     for (var i = 0; i < 8; i++) {
-        this.mouvement.push([this.positionX, this.positionY+i])
-        this.mouvement.push([this.positionX, this.positionY-i])
-        this.mouvement.push([this.positionX+i, this.positionY])
-        this.mouvement.push([this.positionX-i, this.positionY])
+        
+        for (var j in cases) {
+            if (cases[j].positionX == this.positionX && cases[j].positionY == this.positionY+i) {
+                if (cases[j].contient == "vide") {
+                    this.mouvement.push([this.positionX, this.positionY+i]);
+                } else {
+                    this.attaque.push([this.positionX, this.positionY+i]);
+                    fin = true;
+                }
+            }
+        }
+        if (fin == true) { break; }
     }
-    this.attaque = this.mouvement;
+    
+    for (var i = 0; i < 8; i++) {
+        
+        for (var j in cases) {
+            if (cases[j].positionX == this.positionX && cases[j].positionY == this.positionY-i) {
+                if (cases[j].contient == "vide") {
+                    this.mouvement.push([this.positionX, this.positionY-i]);
+                } else {
+                    this.attaque.push([this.positionX, this.positionY-i]);
+                    break;
+                }
+            }
+        }
+        if (fin == true) { break; }
+    }
+    
+    
+    for (var i = 0; i < 8; i++) {
+        for (var j in cases) {
+            if (cases[j].positionX == this.positionX+i && cases[j].positionY == this.positionY) {
+                if (cases[j].contient == "vide") {
+                    this.mouvement.push([this.positionX+i, this.positionY]);
+                } else {
+                    this.attaque.push([this.positionX+i, this.positionY]);
+                    break;
+                }
+            }
+        }
+        if (fin == true) { break; }
+    }
+    
+    for (var i = 0; i < 8; i++) {
+        
+        for (var j in cases) {
+            if (cases[j].positionX == this.positionX-i && cases[j].positionY == this.positionY) {
+                if (cases[j].contient == "vide") {
+                    this.mouvement.push([this.positionX-i, this.positionY]);
+                } else {
+                    this.attaque.push([this.positionX-i, this.positionY]);
+                    break;
+                }
+            }
+        }
+        
+    }
+
     this.mouvementSpecial = "le truc avec le roi";
 }
+
+
+
+
 
 if (this.nom == "fou") {
     this.mouvement = [];
