@@ -125,72 +125,72 @@ window.onload = function() {
 								};
 								myImg.src = 'pieces.png';
             }
-						if (this.nom == "tour") {
+            if (this.nom == "tour") {
                 this.mouvement = [];
                 this.attaque = [];
                 this.mouvementSpecial = [];
 
-								var x_pion = this.positionX * tailleBloc;
-								var y_pion = this.positionY * tailleBloc
-								var myImg = new Image();
-								myImg.onload = function() {
-										ctx.drawImage(myImg, 360, 275, 100, 370, x_pion+14.5, y_pion+7, 75, 280);
-								};
-								myImg.src = 'pieces.png';
-					 }
-					 if (this.nom == "cavalier") {
-					 		this.mouvement = [];
-					 		this.attaque = [];
-					 		this.mouvementSpecial = [];
+                        var x_pion = this.positionX * tailleBloc;
+                        var y_pion = this.positionY * tailleBloc
+                        var myImg = new Image();
+                        myImg.onload = function() {
+                                ctx.drawImage(myImg, 360, 275, 100, 370, x_pion+14.5, y_pion+7, 75, 280);
+                        };
+                        myImg.src = 'pieces.png';
+             }
+             if (this.nom == "cavalier") {
+                    this.mouvement = [];
+                    this.attaque = [];
+                    this.mouvementSpecial = [];
 
-					 		var x_pion = this.positionX * tailleBloc;
-					 		var y_pion = this.positionY * tailleBloc
-					 		var myImg = new Image();
-					 		myImg.onload = function() {
-					 				ctx.drawImage(myImg, 705, 275, 100, 370, x_pion+4, y_pion+7, 75, 280);
-					 		};
-					 		myImg.src = 'pieces.png';
-					 }
-					 if (this.nom == "fou") {
-					 	 this.mouvement = [];
-					 	 this.attaque = [];
-					 	 this.mouvementSpecial = [];
+                    var x_pion = this.positionX * tailleBloc;
+                    var y_pion = this.positionY * tailleBloc
+                    var myImg = new Image();
+                    myImg.onload = function() {
+                            ctx.drawImage(myImg, 705, 275, 100, 370, x_pion+4, y_pion+7, 75, 280);
+                    };
+                    myImg.src = 'pieces.png';
+             }
+             if (this.nom == "fou") {
+                 this.mouvement = [];
+                 this.attaque = [];
+                 this.mouvementSpecial = [];
 
-					 	 var x_pion = this.positionX * tailleBloc;
-					 	 var y_pion = this.positionY * tailleBloc
-					 	 var myImg = new Image();
-					 	 myImg.onload = function() {
-					 			 ctx.drawImage(myImg, 530, 265, 100, 380, x_pion+7, y_pion+6, 75, 280);
-					 	 };
-					 	 myImg.src = 'pieces.png';
-					 }
-					 if (this.nom == "dame") {
-					 	this.mouvement = [];
-					 	this.attaque = [];
-					 	this.mouvementSpecial = [];
+                 var x_pion = this.positionX * tailleBloc;
+                 var y_pion = this.positionY * tailleBloc
+                 var myImg = new Image();
+                 myImg.onload = function() {
+                         ctx.drawImage(myImg, 530, 265, 100, 380, x_pion+7, y_pion+6, 75, 280);
+                 };
+                 myImg.src = 'pieces.png';
+             }
+             if (this.nom == "dame") {
+                    this.mouvement = [];
+                    this.attaque = [];
+                    this.mouvementSpecial = [];
 
-					 	var x_pion = this.positionX * tailleBloc;
-					 	var y_pion = this.positionY * tailleBloc
-					 	var myImg = new Image();
-					 	myImg.onload = function() {
-					 			ctx.drawImage(myImg, 170, 265, 100, 380, x_pion+3, y_pion+6, 75, 280);
-					 	};
-					 	myImg.src = 'pieces.png';
-					 }
-					 if (this.nom == "roi") {
-					  this.mouvement = [];
-					  this.attaque = [];
-					  this.mouvementSpecial = [];
+                    var x_pion = this.positionX * tailleBloc;
+                    var y_pion = this.positionY * tailleBloc
+                    var myImg = new Image();
+                    myImg.onload = function() {
+                            ctx.drawImage(myImg, 170, 265, 100, 380, x_pion+3, y_pion+6, 75, 280);
+                    };
+                    myImg.src = 'pieces.png';
+             }
+             if (this.nom == "roi") {
+                  this.mouvement = [];
+                  this.attaque = [];
+                  this.mouvementSpecial = [];
 
-					  var x_pion = this.positionX * tailleBloc;
-					  var y_pion = this.positionY * tailleBloc
-					  var myImg = new Image();
-					  myImg.onload = function() {
-					 		 ctx.drawImage(myImg, 0, 265, 100, 380, x_pion+8, y_pion+4, 75, 280);
-					  };
-					  myImg.src = 'pieces.png';
-					 }
-				
+                  var x_pion = this.positionX * tailleBloc;
+                  var y_pion = this.positionY * tailleBloc
+                  var myImg = new Image();
+                  myImg.onload = function() {
+                         ctx.drawImage(myImg, 0, 265, 100, 380, x_pion+8, y_pion+4, 75, 280);
+                  };
+                  myImg.src = 'pieces.png';
+             }
+
 
             if (this.nom == "tour") {
                 for (var i = 0; i < 8; i++) {
