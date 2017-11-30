@@ -114,6 +114,11 @@ window.onload = function() {
             var x_pion = this.positionX * tailleBloc;
             var y_pion = this.positionY * tailleBloc;
             
+            this.mouvement = [];
+            this.attaque = [];
+            this.mouvementSpecial = [];
+            
+            
             if (this.nom == "b_pion") {
                 this.mouvement = [[this.positionX, this.positionY-1]];
                 this.attaque = [[this.positionX-1, this.positionY-1], [this.positionX+1, this.positionY-1]];
@@ -215,6 +220,7 @@ window.onload = function() {
                 var mouv2 = true;
                 var mouv3 = true;
                 var mouv4 = true;
+                
                 for (var i = 1; i <= 8; i++) {
                     for (var j in cases) {
                         if (cases[j].positionX == this.positionX && cases[j].positionY == this.positionY+i && mouv1 == true) {
