@@ -193,34 +193,42 @@ window.onload = function() {
 
 
             if (this.nom == "tour") {
+                var mouv1 = true;
+                var mouv2 = true;
+                var mouv3 = true;
+                var mouv4 = true;
                 for (var i = 1; i <= 8; i++) {
                     for (var j in cases) {
-                        if (cases[j].positionX == this.positionX && cases[j].positionY == this.positionY+i) {
+                        if (cases[j].positionX == this.positionX && cases[j].positionY == this.positionY+i && mouv1 == true) {
                             if (cases[j].contient == "vide") {
                                 this.mouvement.push([this.positionX, this.positionY+i]);
                             } else {
                                 this.attaque.push([this.positionX, this.positionY+i]);
+                                mouv1 = false;
                             }
                         }
-                        if (cases[j].positionX == this.positionX && cases[j].positionY == this.positionY-i) {
+                        if (cases[j].positionX == this.positionX && cases[j].positionY == this.positionY-i && mouv2 == true) {
                             if (cases[j].contient == "vide") {
                                 this.mouvement.push([this.positionX, this.positionY-i]);
                             } else {
                                 this.attaque.push([this.positionX, this.positionY-i]);
+                                mouv2 = false;
                             }
                         }
-                        if (cases[j].positionX == this.positionX+i && cases[j].positionY == this.positionY) {
+                        if (cases[j].positionX == this.positionX+i && cases[j].positionY == this.positionY && mouv3 == true) {
                             if (cases[j].contient == "vide") {
                                 this.mouvement.push([this.positionX+i, this.positionY]);
                             } else {
                                 this.attaque.push([this.positionX+i, this.positionY]);
+                                mouv3 = false;
                             }
                         }
-                        if (cases[j].positionX == this.positionX-i && cases[j].positionY == this.positionY) {
+                        if (cases[j].positionX == this.positionX-i && cases[j].positionY == this.positionY && mouv4 == true) {
                             if (cases[j].contient == "vide") {
                                 this.mouvement.push([this.positionX-i, this.positionY]);
                             } else {
                                 this.attaque.push([this.positionX-i, this.positionY]);
+                                mouv4 = false;
                             }
                         }   
                     }
