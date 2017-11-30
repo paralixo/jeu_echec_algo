@@ -1,0 +1,10 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+canvas {
+    border: 1px black solid;
+    margin-left: 50px;
+}
+
