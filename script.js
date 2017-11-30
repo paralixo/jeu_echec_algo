@@ -200,7 +200,7 @@ window.onload = function() {
 						     var y_pion = this.positionY * tailleBloc
 						     var myImg = new Image();
 						     myImg.onload = function() {
-						         ctx.drawImage(myImg, 900, 275, 100, 370, x_pion+17, y_pion+5, 75, 280);
+						         ctx.drawImage(myImg, 900, 125, 100, 370, x_pion+17, y_pion+5, 75, 280);
 						     };
 						     myImg.src = 'pieces.png';
 						 }
@@ -213,7 +213,7 @@ window.onload = function() {
 						     var y_pion = this.positionY * tailleBloc
 						     var myImg = new Image();
 						     myImg.onload = function() {
-						         ctx.drawImage(myImg, 360, 275, 100, 370, x_pion+14.5, y_pion+7, 75, 280);
+						         ctx.drawImage(myImg, 360, 125, 100, 370, x_pion+14.5, y_pion+7, 75, 280);
 						     };
 						     myImg.src = 'pieces.png';
 						 }
@@ -226,7 +226,7 @@ window.onload = function() {
 						   var y_pion = this.positionY * tailleBloc
 						   var myImg = new Image();
 						   myImg.onload = function() {
-						       ctx.drawImage(myImg, 705, 275, 100, 370, x_pion+4, y_pion+7, 75, 280);
+						       ctx.drawImage(myImg, 705, 125, 100, 370, x_pion+4, y_pion+7, 75, 280);
 						   };
 						   myImg.src = 'pieces.png';
 						 }
@@ -239,7 +239,7 @@ window.onload = function() {
 						  var y_pion = this.positionY * tailleBloc
 						  var myImg = new Image();
 						  myImg.onload = function() {
-						      ctx.drawImage(myImg, 530, 265, 100, 380, x_pion+7, y_pion+6, 75, 280);
+						      ctx.drawImage(myImg, 530, 115, 100, 380, x_pion+7, y_pion+6, 75, 280);
 						  };
 						  myImg.src = 'pieces.png';
 						 }
@@ -252,7 +252,7 @@ window.onload = function() {
 						 var y_pion = this.positionY * tailleBloc
 						 var myImg = new Image();
 						 myImg.onload = function() {
-						     ctx.drawImage(myImg, 170, 265, 100, 380, x_pion+3, y_pion+6, 75, 280);
+						     ctx.drawImage(myImg, 170, 115, 100, 380, x_pion+3, y_pion+6, 75, 280);
 						 };
 						 myImg.src = 'pieces.png';
 						 }
@@ -265,7 +265,7 @@ window.onload = function() {
 						 var y_pion = this.positionY * tailleBloc
 						 var myImg = new Image();
 						 myImg.onload = function() {
-						    ctx.drawImage(myImg, 0, 265, 100, 380, x_pion+8, y_pion+4, 75, 280);
+						    ctx.drawImage(myImg, 0, 115, 100, 90, x_pion+8, y_pion+4, 75, 280);
 						 };
 						 myImg.src = 'pieces.png';
 						 }
