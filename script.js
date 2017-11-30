@@ -106,6 +106,15 @@ window.onload = function() {
             for (i in cases) {
                 if (cases[i].positionX == this.positionX && cases[i].positionY == this.positionY) {
                     dessinerCercle("#FF4422", this.positionX, this.positionY);
+                    
+                    var x_pion = this.positionX * tailleBloc;
+                    var y_pion = this.positionY * tailleBloc
+                    var myImg = new Image();
+                    myImg.onload = function() {
+                        ctx.drawImage(myImg, 900, 275, 960, 360, x_pion, y_pion, 1000, 300);
+                    };
+                    myImg.src = 'pieces.png';
+                    
                     cases[i].contient = this.nom;
                 }
             }
@@ -152,11 +161,7 @@ window.onload = function() {
     pieces[3] = new piece("pion", 3, 2);
     pieces[3].init();
 
-    var myImg = new Image();
-    myImg.onload = function() {
-        ctx.drawImage(myImg, 900, 275, 960, 360, 2*tailleBloc, 2*tailleBloc, 1000, 300);
-    };
-    myImg.src = 'pieces.png';
+    
 
 
     // Si on clique sur le canvas
