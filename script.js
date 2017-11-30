@@ -193,13 +193,39 @@ window.onload = function() {
 
 
             if (this.nom == "tour") {
-                for (var i = 0; i < 8; i++) {
-                    this.mouvement.push([this.positionX, this.positionY+i])
-                    this.mouvement.push([this.positionX, this.positionY-i])
-                    this.mouvement.push([this.positionX+i, this.positionY])
-                    this.mouvement.push([this.positionX-i, this.positionY])
+                for (var i = 1; i <= 8; i++) {
+                    for (var j in cases) {
+                        if (cases[j].positionX == this.positionX && cases[j].positionY == this.positionY+i) {
+                            if (cases[j].contient == "vide") {
+                                this.mouvement.push([this.positionX, this.positionY+i]);
+                            } else {
+                                this.attaque.push([this.positionX, this.positionY+i]);
+                            }
+                        }
+                        if (cases[j].positionX == this.positionX && cases[j].positionY == this.positionY-i) {
+                            if (cases[j].contient == "vide") {
+                                this.mouvement.push([this.positionX, this.positionY-i]);
+                            } else {
+                                this.attaque.push([this.positionX, this.positionY-i]);
+                            }
+                        }
+                        if (cases[j].positionX == this.positionX+i && cases[j].positionY == this.positionY) {
+                            if (cases[j].contient == "vide") {
+                                this.mouvement.push([this.positionX+i, this.positionY]);
+                            } else {
+                                this.attaque.push([this.positionX+i, this.positionY]);
+                            }
+                        }
+                        if (cases[j].positionX == this.positionX-i && cases[j].positionY == this.positionY) {
+                            if (cases[j].contient == "vide") {
+                                this.mouvement.push([this.positionX-i, this.positionY]);
+                            } else {
+                                this.attaque.push([this.positionX-i, this.positionY]);
+                            }
+                        }   
+                    }
                 }
-                this.attaque = this.mouvement;
+//                this.attaque = this.mouvement;
                 this.mouvementSpecial = "le truc avec le roi";
             }
         }
