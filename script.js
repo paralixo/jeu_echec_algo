@@ -385,22 +385,25 @@ window.onload = function() {
         var y = parseInt(pixelY/tailleBloc);
 
         // Gère les clics sur les cases (déplacements, attaques...)
-        for (i in cases) {
+        for (var i in cases) {
             if (x == cases[i].positionX && y == cases[i].positionY) {
                 console.log(cases[i]);
+                
+                // Si il n'y a pas une couleur sur la case (vert ou rouge)
                 if (cases[i].couleurEvenement == "") {
                     effacerCouleurEvenement();
                     actualisationPieces();
+                    
+                // Si il y a une couleur d'événement
                 } else {
-                    for (m in pieces) {
+                    for (var m in pieces) {
                         if (cases[i].origineCouleurEvenementX == pieces[m].positionX && cases[i].origineCouleurEvenementY == pieces[m].positionY) {
 
                             // On mange une pièce
                             if (cases[i].contient != "vide" && cases[i].couleurEvenement == "red") {
-                                for (n in pieces) {
+                                for (var n in pieces) {
                                     if (cases[i].positionX == pieces[n].positionX && cases[i].positionY == pieces[n].positionY) {
                                         pieces[n].vivant = false;
-                                        pieces[n].suppr();
                                         pieces[n].positionX = null;
                                         pieces[n].positionY = null;
                                         effacerCouleurEvenement();
@@ -408,6 +411,7 @@ window.onload = function() {
                                     }
                                 }
                             }
+                            
                             // Déplacement
                             pieces[m].suppr();
                             pieces[m].positionX = x;
@@ -425,16 +429,16 @@ window.onload = function() {
         }
 
         // permet de connaître les déplacments possibles d'un pion lorsqu'on clique dessus
-        for (k in pieces) {
+        for (var k in pieces) {
             if (x == pieces[k].positionX && y == pieces[k].positionY && pieces[k].vivant == true) {
                 console.log(pieces[k]);
 //                console.log(pieces[i].mouvement);
-                for (j in pieces[k].mouvement) {
+                for (var j in pieces[k].mouvement) {
 //                    console.log("X: " + pieces[i].mouvement[j][0]);
 //                    console.log("Y: " + pieces[i].mouvement[j][1]);
                     prendrecouleurEvenement(pieces[k].mouvement[j][0], pieces[k].mouvement[j][1], "green", x, y);
                 }
-                for (l in pieces[k].attaque) {
+                for (var l in pieces[k].attaque) {
                     prendrecouleurEvenement(pieces[k].attaque[l][0], pieces[k].attaque[l][1], "red", x, y);
                 }
                 actualisationPieces();
