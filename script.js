@@ -105,25 +105,23 @@ window.onload = function() {
         this.init = function() {
             for (i in cases) {
                 if (cases[i].positionX == this.positionX && cases[i].positionY == this.positionY) {
-                  //  dessinerCercle("#FF4422", this.positionX, this.positionY);
-
-
-
+                    //Pour dire que la case contient cette pièce
                     cases[i].contient = this.nom;
                 }
             }
+            
             if (this.nom == "b_pion") {
                 this.mouvement = [[this.positionX, this.positionY-1]];
                 this.attaque = [[this.positionX-1, this.positionY-1], [this.positionX+1, this.positionY-1]];
                 this.mouvementSpecial = [[this.positionX, this.positionY-2]];
 
-								var x_pion = this.positionX * tailleBloc;
-								var y_pion = this.positionY * tailleBloc
-								var myImg = new Image();
-								myImg.onload = function() {
-										ctx.drawImage(myImg, 900, 275, 100, 370, x_pion+17, y_pion+5, 75, 280);
-								};
-								myImg.src = 'pieces.png';
+                var x_pion = this.positionX * tailleBloc;
+                var y_pion = this.positionY * tailleBloc
+                var myImg = new Image();
+                myImg.onload = function() {
+                        ctx.drawImage(myImg, 900, 275, 100, 370, x_pion+17, y_pion+5, 75, 280);
+                };
+                myImg.src = 'pieces.png';
             }
             if (this.nom == "b_tour") {
                 this.mouvement = [];
@@ -138,7 +136,7 @@ window.onload = function() {
                         };
                         myImg.src = 'pieces.png';
              }
-             if (this.nom == "b_cavalier") {
+            if (this.nom == "b_cavalier") {
                     this.mouvement = [];
                     this.attaque = [];
                     this.mouvementSpecial = [];
@@ -151,7 +149,7 @@ window.onload = function() {
                     };
                     myImg.src = 'pieces.png';
              }
-             if (this.nom == "b_fou") {
+            if (this.nom == "b_fou") {
                  this.mouvement = [];
                  this.attaque = [];
                  this.mouvementSpecial = [];
@@ -164,7 +162,7 @@ window.onload = function() {
                  };
                  myImg.src = 'pieces.png';
              }
-             if (this.nom == "b_dame") {
+            if (this.nom == "b_dame") {
                     this.mouvement = [];
                     this.attaque = [];
                     this.mouvementSpecial = [];
@@ -177,7 +175,7 @@ window.onload = function() {
                     };
                     myImg.src = 'pieces.png';
              }
-             if (this.nom == "b_roi") {
+            if (this.nom == "b_roi") {
                   this.mouvement = [];
                   this.attaque = [];
                   this.mouvementSpecial = [];
@@ -191,84 +189,84 @@ window.onload = function() {
                   myImg.src = 'pieces.png';
              }
 
-						 if (this.nom == "n_pion") {
-						     this.mouvement = [];
-						     this.attaque = [];
-						     this.mouvementSpecial = [];
+            if (this.nom == "n_pion") {
+                this.mouvement = [];
+                this.attaque = [];
+                this.mouvementSpecial = [];
 
-						     var x_pion = this.positionX * tailleBloc;
-						     var y_pion = this.positionY * tailleBloc
-						     var myImg = new Image();
-						     myImg.onload = function() {
-						         ctx.drawImage(myImg, 900, 125, 100, 370, x_pion+17, y_pion+5, 75, 280);
-						     };
-						     myImg.src = 'pieces.png';
-						 }
-						 if (this.nom == "n_tour") {
-						     this.mouvement = [];
-						     this.attaque = [];
-						     this.mouvementSpecial = [];
+                var x_pion = this.positionX * tailleBloc;
+                var y_pion = this.positionY * tailleBloc
+                var myImg = new Image();
+                myImg.onload = function() {
+                    ctx.drawImage(myImg, 900, 125, 100, 100, x_pion+17, y_pion+5, 75, 75);
+                };
+                myImg.src = 'pieces.png';
+            }
+            if (this.nom == "n_tour") {
+                this.mouvement = [];
+                this.attaque = [];
+                this.mouvementSpecial = [];
 
-						     var x_pion = this.positionX * tailleBloc;
-						     var y_pion = this.positionY * tailleBloc
-						     var myImg = new Image();
-						     myImg.onload = function() {
-						         ctx.drawImage(myImg, 360, 125, 100, 370, x_pion+14.5, y_pion+7, 75, 280);
-						     };
-						     myImg.src = 'pieces.png';
-						 }
-						 if (this.nom == "n_cavalier") {
-						   this.mouvement = [];
-						   this.attaque = [];
-						   this.mouvementSpecial = [];
+                var x_pion = this.positionX * tailleBloc;
+                var y_pion = this.positionY * tailleBloc
+                var myImg = new Image();
+                myImg.onload = function() {
+                    ctx.drawImage(myImg, 360, 125, 100, 100, x_pion+14.5, y_pion+7, 75, 75);
+                };
+                myImg.src = 'pieces.png';
+            }
+            if (this.nom == "n_cavalier") {
+                this.mouvement = [];
+                this.attaque = [];
+                this.mouvementSpecial = [];
 
-						   var x_pion = this.positionX * tailleBloc;
-						   var y_pion = this.positionY * tailleBloc
-						   var myImg = new Image();
-						   myImg.onload = function() {
-						       ctx.drawImage(myImg, 705, 125, 100, 370, x_pion+4, y_pion+7, 75, 280);
-						   };
-						   myImg.src = 'pieces.png';
-						 }
-						 if (this.nom == "n_fou") {
-						  this.mouvement = [];
-						  this.attaque = [];
-						  this.mouvementSpecial = [];
+                var x_pion = this.positionX * tailleBloc;
+                var y_pion = this.positionY * tailleBloc
+                var myImg = new Image();
+                myImg.onload = function() {
+                    ctx.drawImage(myImg, 705, 125, 100, 100, x_pion+4, y_pion+7, 75, 75);
+                };
+                myImg.src = 'pieces.png';
+            }
+            if (this.nom == "n_fou") {
+                this.mouvement = [];
+                this.attaque = [];
+                this.mouvementSpecial = [];
 
-						  var x_pion = this.positionX * tailleBloc;
-						  var y_pion = this.positionY * tailleBloc
-						  var myImg = new Image();
-						  myImg.onload = function() {
-						      ctx.drawImage(myImg, 530, 115, 100, 380, x_pion+7, y_pion+6, 75, 280);
-						  };
-						  myImg.src = 'pieces.png';
-						 }
-						 if (this.nom == "n_dame") {
-						 this.mouvement = [];
-						 this.attaque = [];
-						 this.mouvementSpecial = [];
+                var x_pion = this.positionX * tailleBloc;
+                var y_pion = this.positionY * tailleBloc
+                var myImg = new Image();
+                myImg.onload = function() {
+                    ctx.drawImage(myImg, 530, 115, 100, 100, x_pion+7, y_pion+6, 75, 75);
+                };
+                myImg.src = 'pieces.png';
+            }
+            if (this.nom == "n_dame") {
+                this.mouvement = [];
+                this.attaque = [];
+                this.mouvementSpecial = [];
 
-						 var x_pion = this.positionX * tailleBloc;
-						 var y_pion = this.positionY * tailleBloc
-						 var myImg = new Image();
-						 myImg.onload = function() {
-						     ctx.drawImage(myImg, 170, 115, 100, 380, x_pion+3, y_pion+6, 75, 280);
-						 };
-						 myImg.src = 'pieces.png';
-						 }
-						 if (this.nom == "n_roi") {
-						 this.mouvement = [];
-						 this.attaque = [];
-						 this.mouvementSpecial = [];
+                var x_pion = this.positionX * tailleBloc;
+                var y_pion = this.positionY * tailleBloc
+                var myImg = new Image();
+                myImg.onload = function() {
+                    ctx.drawImage(myImg, 170, 115, 100, 100, x_pion+3, y_pion+6, 75, 75);
+                };
+                myImg.src = 'pieces.png';
+            }
+            if (this.nom == "n_roi") {
+                this.mouvement = [];
+                this.attaque = [];
+                this.mouvementSpecial = [];
 
-						 var x_pion = this.positionX * tailleBloc;
-						 var y_pion = this.positionY * tailleBloc
-						 var myImg = new Image();
-						 myImg.onload = function() {
-						    ctx.drawImage(myImg, 0, 115, 100, 90, x_pion+8, y_pion+4, 75, 280);
-						 };
-						 myImg.src = 'pieces.png';
-						 }
+                var x_pion = this.positionX * tailleBloc;
+                var y_pion = this.positionY * tailleBloc
+                var myImg = new Image();
+                myImg.onload = function() {
+                    ctx.drawImage(myImg, 0, 115, 100, 100, x_pion+8, y_pion+4, 75, 75);
+                };
+                myImg.src = 'pieces.png';
+            }
 
             if (this.nom == "b_tour") {
                 var mouv1 = true;
@@ -311,51 +309,45 @@ window.onload = function() {
                         }
                     }
                 }
-//                this.attaque = this.mouvement;
+        //                this.attaque = this.mouvement;
                 this.mouvementSpecial = "le truc avec le roi";
             }
         }
 
     }
 
-function initPiece(){
-		var i =0;
-		while (i!=9) {
-				pieces.push(new piece("b_pion",i,6));
-				i++;
-		}
-		pieces.push(new piece("b_tour",0,7));
-		pieces.push(new piece("b_tour",7,7));
-		pieces.push(new piece("b_cavalier",1,7));
-		pieces.push(new piece("b_cavalier",6,7));
-		pieces.push(new piece("b_fou",2,7));
-		pieces.push(new piece("b_fou",5,7));
-		pieces.push(new piece("b_dame",3,7));
-		pieces.push(new piece("b_roi",4,7));
+    function initPiece(){
+        var i =0;
 
-		 i =0;
-			while (i!=9) {
-					pieces.push(new piece("n_pion",i,1));
-					i++;
-			}
-			pieces.push(new piece("n_tour",0,0));
-			pieces.push(new piece("n_tour",7,0));
-			pieces.push(new piece("n_cavalier",1,0));
-			pieces.push(new piece("n_cavalier",6,0));
-			pieces.push(new piece("n_fou",2,0));
-			pieces.push(new piece("n_fou",5,0));
-			pieces.push(new piece("n_dame",3,0));
-			pieces.push(new piece("n_roi",4,0));
-			actualisationPieces();
+        while (i!=9) {
+            pieces.push(new piece("b_pion",i,6));
+            i++;
+        }
+        pieces.push(new piece("b_tour",0,7));
+        pieces.push(new piece("b_tour",7,7));
+        pieces.push(new piece("b_cavalier",1,7));
+        pieces.push(new piece("b_cavalier",6,7));
+        pieces.push(new piece("b_fou",2,7));
+        pieces.push(new piece("b_fou",5,7));
+        pieces.push(new piece("b_dame",3,7));
+        pieces.push(new piece("b_roi",4,7));
 
+        i =0;
+        while (i!=9) {
+            pieces.push(new piece("n_pion",i,1));
+            i++;
+        }
+        pieces.push(new piece("n_tour",0,0));
+        pieces.push(new piece("n_tour",7,0));
+        pieces.push(new piece("n_cavalier",1,0));
+        pieces.push(new piece("n_cavalier",6,0));
+        pieces.push(new piece("n_fou",2,0));
+        pieces.push(new piece("n_fou",5,0));
+        pieces.push(new piece("n_dame",3,0));
+        pieces.push(new piece("n_roi",4,0));
 
-}
-    /*function dessinerCercle(color, x, y) {
-        ctx.beginPath();
-        ctx.fillStyle=color;
-        ctx.arc(x*tailleBloc+tailleBloc/2, y*tailleBloc+tailleBloc/2, tailleBloc/2.5, 0, 2 * Math.PI);
-        ctx.fill();
-    }*/
+        actualisationPieces();
+    }
 
     // trouver position de la souris relative au canvas
     function trouverPosition(element) {
@@ -371,22 +363,11 @@ function initPiece(){
         return {'x':x, 'y':y};
     }
 
+    
+    /* ---#--- MAIN ---#--- */
+    
+    
     afficherFond();
-
-  /*  pieces[0] = new piece("pion", 4, 5);
-    pieces[0].init();
-
-    pieces[1] = new piece("pion", 3, 4);
-    pieces[1].init();
-
-    pieces[2] = new piece("pion", 2, 4);
-    pieces[2].init();
-
-    pieces[3] = new piece("pion", 3, 2);
-    pieces[3].init();
-
-    piece[]*/
-
     initPiece();
 
     // Si on clique sur le canvas
@@ -462,31 +443,5 @@ function initPiece(){
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
