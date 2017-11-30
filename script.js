@@ -125,7 +125,6 @@ window.onload = function() {
 								};
 								myImg.src = 'pieces.png';
             }
-<<<<<<< HEAD
 						if (this.nom == "tour") {
                 this.mouvement = [];
                 this.attaque = [];
@@ -191,9 +190,8 @@ window.onload = function() {
 					  };
 					  myImg.src = 'pieces.png';
 					 }
-				}
+				
 
-=======
             if (this.nom == "tour") {
                 for (var i = 0; i < 8; i++) {
                     this.mouvement.push([this.positionX, this.positionY+i])
@@ -205,7 +203,7 @@ window.onload = function() {
                 this.mouvementSpecial = "le truc avec le roi";
             }
         }
->>>>>>> 96f689edea83a18178f791d2d5ee008a1b670afa
+
     }
 
 function initPiece(){
@@ -265,7 +263,7 @@ function initPiece(){
     piece[]*/
 
     initPiece();
-    
+
     // Si on clique sur le canvas
     canvas.onclick = function(e) {
 
