@@ -1,28 +1,30 @@
-window.onload = function() {
-	var canvas = document.getElementById('canvas');
-	var ctx = canvas.getContext('2d');
-
-    var tailleBloc = 81.25;
-    var width = 650;
-    var height = 650;
-    var nbBlocsLargeur = width/tailleBloc;
-    var nbBlocsHauteur = height/tailleBloc;
-    var cases = [];
-    var pieces = [];
-    
-    // On va chercher l'image et on attends qu'elle charge
-    var myImg = new Image();
+window.onload = function () {
+    // Mise en place du canvas
+	var canvas = document.getElementById('canvas'),
+	    ctx = canvas.getContext('2d'),
+        
+    //Variables utiles
+        tailleBloc = 81.25,
+        width = 650,
+        height = 650,
+        nbBlocsLargeur = width / tailleBloc,
+        nbBlocsHauteur = height / tailleBloc,
+        cases = [],
+        pieces = [],
+        
+    // On va chercher l'image et on attend qu'elle charge
+        myImg = new Image();
     myImg.src = 'pieces.png';
-    myImg.onload = function() {
+    myImg.onload = function () {
 
 
         /* ---#--- FONCTIONS & OBJETS ---#--- */
 
 
         // affiche le quadrillage et instancie les objets cases
-        function afficherFond(){
-            var couleur_fond;
-            var cpt = 0;
+        function afficherFond() {
+            var couleur_fond,
+                cpt = 0;
             for (var i = 0; i<nbBlocsHauteur; i++) {
                 for (var j = 0; j<nbBlocsLargeur; j++) {
                     if (cpt%2 === 0) {
@@ -58,6 +60,7 @@ window.onload = function() {
             }
         };
 
+        // La case en question sera coloré de la couleur adéquat à l'événement (rouge ou vert)
         function prendrecouleurEvenement(x, y, couleur, origineX, origineY) {
             var i = 0;
             for (i in cases) {
@@ -71,6 +74,7 @@ window.onload = function() {
             }
         }
 
+        // Permet de supprimer toutes les couleurs d'événement sur le tableau
         function effacerCouleurEvenement() {
             var i = 0;
             for (i in cases) {
@@ -82,6 +86,7 @@ window.onload = function() {
             }
         }
 
+        // Permet de ré-initialiser les pieces (permet de réafficher et d'actualiser les paramètres de déplacment)
         function actualisationPieces() {
             var i = 0;
             for (i in pieces) {
@@ -227,11 +232,13 @@ window.onload = function() {
 
         }
 
+        // Permet d'afficher la portion d'image voulu pour les pieces
         function afficherImg(xImg, yImg, wImg, hImg, xPos, yPos, w, h) {
             ctx.drawImage(myImg, xImg, yImg, wImg, hImg, xPos, yPos, w, h);  
         }
 
-        function initPiece(){
+        // Permet d'initialiser le plateau (avec les pieces)
+        function initPieces(){
             var i =0;
 
             while (i!=9) {
@@ -281,9 +288,9 @@ window.onload = function() {
 
         /* ---#--- MAIN ---#--- */
 
-
+        // On initialise le Jeu
         afficherFond();
-        initPiece();
+        initPieces();
 
         // Si on clique sur le canvas
         canvas.onclick = function(e) {
