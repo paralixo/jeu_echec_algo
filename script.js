@@ -154,7 +154,7 @@ window.onload = function() {
     
     var myImg = new Image();
     myImg.onload = function() {
-        ctx.drawImage(myImg, 100, 100, 400, 400, 2*tailleBloc, 2*tailleBloc, tailleBloc, tailleBloc);
+        ctx.drawImage(myImg, 900, 275, 960, 360, 2*tailleBloc, 2*tailleBloc, 1000, 300);
     };
     myImg.src = 'pieces.png';
     
