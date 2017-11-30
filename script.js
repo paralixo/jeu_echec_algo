@@ -103,20 +103,22 @@ window.onload = function() {
             }
         }
         this.init = function() {
+            
+            //Pour dire que la case contient cette pièce
             for (i in cases) {
                 if (cases[i].positionX == this.positionX && cases[i].positionY == this.positionY) {
-                    //Pour dire que la case contient cette pièce
                     cases[i].contient = this.nom;
                 }
             }
+            
+            var x_pion = this.positionX * tailleBloc;
+            var y_pion = this.positionY * tailleBloc;
             
             if (this.nom == "b_pion") {
                 this.mouvement = [[this.positionX, this.positionY-1]];
                 this.attaque = [[this.positionX-1, this.positionY-1], [this.positionX+1, this.positionY-1]];
                 this.mouvementSpecial = [[this.positionX, this.positionY-2]];
 
-                var x_pion = this.positionX * tailleBloc;
-                var y_pion = this.positionY * tailleBloc
                 var myImg = new Image();
                 myImg.onload = function() {
                         ctx.drawImage(myImg, 900, 275, 100, 370, x_pion+17, y_pion+5, 75, 280);
@@ -124,78 +126,46 @@ window.onload = function() {
                 myImg.src = 'pieces.png';
             }
             if (this.nom == "b_tour") {
-                this.mouvement = [];
-                this.attaque = [];
-                this.mouvementSpecial = [];
-
-                        var x_pion = this.positionX * tailleBloc;
-                        var y_pion = this.positionY * tailleBloc
-                        var myImg = new Image();
-                        myImg.onload = function() {
-                                ctx.drawImage(myImg, 360, 275, 100, 370, x_pion+14.5, y_pion+7, 75, 280);
-                        };
-                        myImg.src = 'pieces.png';
+                var myImg = new Image();
+                myImg.onload = function() {
+                        ctx.drawImage(myImg, 360, 275, 100, 370, x_pion+14.5, y_pion+7, 75, 280);
+                };
+                myImg.src = 'pieces.png';
              }
             if (this.nom == "b_cavalier") {
-                    this.mouvement = [];
-                    this.attaque = [];
-                    this.mouvementSpecial = [];
-
-                    var x_pion = this.positionX * tailleBloc;
-                    var y_pion = this.positionY * tailleBloc
-                    var myImg = new Image();
-                    myImg.onload = function() {
-                            ctx.drawImage(myImg, 705, 275, 100, 370, x_pion+4, y_pion+7, 75, 280);
-                    };
-                    myImg.src = 'pieces.png';
+                var myImg = new Image();
+                myImg.onload = function() {
+                        ctx.drawImage(myImg, 705, 275, 100, 370, x_pion+4, y_pion+7, 75, 280);
+                };
+                myImg.src = 'pieces.png';
              }
             if (this.nom == "b_fou") {
-                 this.mouvement = [];
-                 this.attaque = [];
-                 this.mouvementSpecial = [];
-
-                 var x_pion = this.positionX * tailleBloc;
-                 var y_pion = this.positionY * tailleBloc
-                 var myImg = new Image();
-                 myImg.onload = function() {
-                         ctx.drawImage(myImg, 530, 265, 100, 380, x_pion+7, y_pion+6, 75, 280);
-                 };
-                 myImg.src = 'pieces.png';
+                var myImg = new Image();
+                myImg.onload = function() {
+                    ctx.drawImage(myImg, 530, 265, 100, 380, x_pion+7, y_pion+6, 75, 280);
+                };
+                myImg.src = 'pieces.png';
              }
             if (this.nom == "b_dame") {
-                    this.mouvement = [];
-                    this.attaque = [];
-                    this.mouvementSpecial = [];
-
-                    var x_pion = this.positionX * tailleBloc;
-                    var y_pion = this.positionY * tailleBloc
-                    var myImg = new Image();
-                    myImg.onload = function() {
-                            ctx.drawImage(myImg, 170, 265, 100, 380, x_pion+3, y_pion+6, 75, 280);
-                    };
-                    myImg.src = 'pieces.png';
+                var myImg = new Image();
+                myImg.onload = function() {
+                    ctx.drawImage(myImg, 170, 265, 100, 380, x_pion+3, y_pion+6, 75, 280);
+                };
+                myImg.src = 'pieces.png';
              }
             if (this.nom == "b_roi") {
-                  this.mouvement = [];
-                  this.attaque = [];
-                  this.mouvementSpecial = [];
-
-                  var x_pion = this.positionX * tailleBloc;
-                  var y_pion = this.positionY * tailleBloc
-                  var myImg = new Image();
-                  myImg.onload = function() {
-                         ctx.drawImage(myImg, 0, 265, 100, 380, x_pion+8, y_pion+4, 75, 280);
-                  };
-                  myImg.src = 'pieces.png';
+                var myImg = new Image();
+                myImg.onload = function() {
+                    ctx.drawImage(myImg, 0, 265, 100, 380, x_pion+8, y_pion+4, 75, 280);
+                };
+                myImg.src = 'pieces.png';
              }
 
             if (this.nom == "n_pion") {
-                this.mouvement = [];
-                this.attaque = [];
-                this.mouvementSpecial = [];
-
-                var x_pion = this.positionX * tailleBloc;
-                var y_pion = this.positionY * tailleBloc
+                this.mouvement = [[this.positionX, this.positionY+1]];
+                this.attaque = [[this.positionX+1, this.positionY+1], [this.positionX-1, this.positionY+1]];
+                this.mouvementSpecial = [[this.positionX, this.positionY+2]];
+                
                 var myImg = new Image();
                 myImg.onload = function() {
                     ctx.drawImage(myImg, 900, 125, 100, 100, x_pion+17, y_pion+5, 75, 75);
@@ -203,12 +173,6 @@ window.onload = function() {
                 myImg.src = 'pieces.png';
             }
             if (this.nom == "n_tour") {
-                this.mouvement = [];
-                this.attaque = [];
-                this.mouvementSpecial = [];
-
-                var x_pion = this.positionX * tailleBloc;
-                var y_pion = this.positionY * tailleBloc
                 var myImg = new Image();
                 myImg.onload = function() {
                     ctx.drawImage(myImg, 360, 125, 100, 100, x_pion+14.5, y_pion+7, 75, 75);
@@ -216,12 +180,6 @@ window.onload = function() {
                 myImg.src = 'pieces.png';
             }
             if (this.nom == "n_cavalier") {
-                this.mouvement = [];
-                this.attaque = [];
-                this.mouvementSpecial = [];
-
-                var x_pion = this.positionX * tailleBloc;
-                var y_pion = this.positionY * tailleBloc
                 var myImg = new Image();
                 myImg.onload = function() {
                     ctx.drawImage(myImg, 705, 125, 100, 100, x_pion+4, y_pion+7, 75, 75);
@@ -229,12 +187,6 @@ window.onload = function() {
                 myImg.src = 'pieces.png';
             }
             if (this.nom == "n_fou") {
-                this.mouvement = [];
-                this.attaque = [];
-                this.mouvementSpecial = [];
-
-                var x_pion = this.positionX * tailleBloc;
-                var y_pion = this.positionY * tailleBloc
                 var myImg = new Image();
                 myImg.onload = function() {
                     ctx.drawImage(myImg, 530, 115, 100, 100, x_pion+7, y_pion+6, 75, 75);
@@ -242,12 +194,6 @@ window.onload = function() {
                 myImg.src = 'pieces.png';
             }
             if (this.nom == "n_dame") {
-                this.mouvement = [];
-                this.attaque = [];
-                this.mouvementSpecial = [];
-
-                var x_pion = this.positionX * tailleBloc;
-                var y_pion = this.positionY * tailleBloc
                 var myImg = new Image();
                 myImg.onload = function() {
                     ctx.drawImage(myImg, 170, 115, 100, 100, x_pion+3, y_pion+6, 75, 75);
@@ -255,12 +201,6 @@ window.onload = function() {
                 myImg.src = 'pieces.png';
             }
             if (this.nom == "n_roi") {
-                this.mouvement = [];
-                this.attaque = [];
-                this.mouvementSpecial = [];
-
-                var x_pion = this.positionX * tailleBloc;
-                var y_pion = this.positionY * tailleBloc
                 var myImg = new Image();
                 myImg.onload = function() {
                     ctx.drawImage(myImg, 0, 115, 100, 100, x_pion+8, y_pion+4, 75, 75);
@@ -268,7 +208,9 @@ window.onload = function() {
                 myImg.src = 'pieces.png';
             }
 
-            if (this.nom == "b_tour") {
+            // Défini les mouvements possibles des tours
+            if (this.nom.search("tour") != -1) {
+                console.log("def deplacements tour OK !")
                 var mouv1 = true;
                 var mouv2 = true;
                 var mouv3 = true;
@@ -379,11 +321,11 @@ window.onload = function() {
         var pos = trouverPosition(this);
         var pixelX = e.clientX - pos.x;
         var pixelY = e.clientY - pos.y;
-
         // position de la souris dans le canvas en case
         var x = parseInt(pixelX/tailleBloc);
         var y = parseInt(pixelY/tailleBloc);
 
+        
         // Gère les clics sur les cases (déplacements, attaques...)
         for (var i in cases) {
             if (x == cases[i].positionX && y == cases[i].positionY) {
@@ -428,6 +370,7 @@ window.onload = function() {
             }
         }
 
+        
         // permet de connaître les déplacments possibles d'un pion lorsqu'on clique dessus
         for (var k in pieces) {
             if (x == pieces[k].positionX && y == pieces[k].positionY && pieces[k].vivant == true) {
