@@ -112,7 +112,7 @@ window.onload = function() {
                     cases[i].contient = this.nom;
                 }
             }
-            if (this.nom == "pion") {
+            if (this.nom == "b_pion") {
                 this.mouvement = [[this.positionX, this.positionY-1]];
                 this.attaque = [[this.positionX-1, this.positionY-1], [this.positionX+1, this.positionY-1]];
                 this.mouvementSpecial = [[this.positionX, this.positionY-2]];
@@ -125,7 +125,7 @@ window.onload = function() {
 								};
 								myImg.src = 'pieces.png';
             }
-            if (this.nom == "tour") {
+            if (this.nom == "b_tour") {
                 this.mouvement = [];
                 this.attaque = [];
                 this.mouvementSpecial = [];
@@ -138,7 +138,7 @@ window.onload = function() {
                         };
                         myImg.src = 'pieces.png';
              }
-             if (this.nom == "cavalier") {
+             if (this.nom == "b_cavalier") {
                     this.mouvement = [];
                     this.attaque = [];
                     this.mouvementSpecial = [];
@@ -151,7 +151,7 @@ window.onload = function() {
                     };
                     myImg.src = 'pieces.png';
              }
-             if (this.nom == "fou") {
+             if (this.nom == "b_fou") {
                  this.mouvement = [];
                  this.attaque = [];
                  this.mouvementSpecial = [];
@@ -164,7 +164,7 @@ window.onload = function() {
                  };
                  myImg.src = 'pieces.png';
              }
-             if (this.nom == "dame") {
+             if (this.nom == "b_dame") {
                     this.mouvement = [];
                     this.attaque = [];
                     this.mouvementSpecial = [];
@@ -177,7 +177,7 @@ window.onload = function() {
                     };
                     myImg.src = 'pieces.png';
              }
-             if (this.nom == "roi") {
+             if (this.nom == "b_roi") {
                   this.mouvement = [];
                   this.attaque = [];
                   this.mouvementSpecial = [];
@@ -191,8 +191,86 @@ window.onload = function() {
                   myImg.src = 'pieces.png';
              }
 
+						 if (this.nom == "n_pion") {
+						     this.mouvement = [];
+						     this.attaque = [];
+						     this.mouvementSpecial = [];
 
-            if (this.nom == "tour") {
+						     var x_pion = this.positionX * tailleBloc;
+						     var y_pion = this.positionY * tailleBloc
+						     var myImg = new Image();
+						     myImg.onload = function() {
+						         ctx.drawImage(myImg, 900, 275, 100, 370, x_pion+17, y_pion+5, 75, 280);
+						     };
+						     myImg.src = 'pieces.png';
+						 }
+						 if (this.nom == "n_tour") {
+						     this.mouvement = [];
+						     this.attaque = [];
+						     this.mouvementSpecial = [];
+
+						     var x_pion = this.positionX * tailleBloc;
+						     var y_pion = this.positionY * tailleBloc
+						     var myImg = new Image();
+						     myImg.onload = function() {
+						         ctx.drawImage(myImg, 360, 275, 100, 370, x_pion+14.5, y_pion+7, 75, 280);
+						     };
+						     myImg.src = 'pieces.png';
+						 }
+						 if (this.nom == "n_cavalier") {
+						   this.mouvement = [];
+						   this.attaque = [];
+						   this.mouvementSpecial = [];
+
+						   var x_pion = this.positionX * tailleBloc;
+						   var y_pion = this.positionY * tailleBloc
+						   var myImg = new Image();
+						   myImg.onload = function() {
+						       ctx.drawImage(myImg, 705, 275, 100, 370, x_pion+4, y_pion+7, 75, 280);
+						   };
+						   myImg.src = 'pieces.png';
+						 }
+						 if (this.nom == "n_fou") {
+						  this.mouvement = [];
+						  this.attaque = [];
+						  this.mouvementSpecial = [];
+
+						  var x_pion = this.positionX * tailleBloc;
+						  var y_pion = this.positionY * tailleBloc
+						  var myImg = new Image();
+						  myImg.onload = function() {
+						      ctx.drawImage(myImg, 530, 265, 100, 380, x_pion+7, y_pion+6, 75, 280);
+						  };
+						  myImg.src = 'pieces.png';
+						 }
+						 if (this.nom == "n_dame") {
+						 this.mouvement = [];
+						 this.attaque = [];
+						 this.mouvementSpecial = [];
+
+						 var x_pion = this.positionX * tailleBloc;
+						 var y_pion = this.positionY * tailleBloc
+						 var myImg = new Image();
+						 myImg.onload = function() {
+						     ctx.drawImage(myImg, 170, 265, 100, 380, x_pion+3, y_pion+6, 75, 280);
+						 };
+						 myImg.src = 'pieces.png';
+						 }
+						 if (this.nom == "n_roi") {
+						 this.mouvement = [];
+						 this.attaque = [];
+						 this.mouvementSpecial = [];
+
+						 var x_pion = this.positionX * tailleBloc;
+						 var y_pion = this.positionY * tailleBloc
+						 var myImg = new Image();
+						 myImg.onload = function() {
+						    ctx.drawImage(myImg, 0, 265, 100, 380, x_pion+8, y_pion+4, 75, 280);
+						 };
+						 myImg.src = 'pieces.png';
+						 }
+
+            if (this.nom == "b_tour") {
                 var mouv1 = true;
                 var mouv2 = true;
                 var mouv3 = true;
@@ -230,7 +308,7 @@ window.onload = function() {
                                 this.attaque.push([this.positionX-i, this.positionY]);
                                 mouv4 = false;
                             }
-                        }   
+                        }
                     }
                 }
 //                this.attaque = this.mouvement;
@@ -243,19 +321,32 @@ window.onload = function() {
 function initPiece(){
 		var i =0;
 		while (i!=9) {
-				pieces.push(new piece("pion",i,6));
+				pieces.push(new piece("b_pion",i,6));
 				i++;
 		}
-		pieces.push(new piece("tour",0,7));
-		pieces.push(new piece("tour",7,7));
-		pieces.push(new piece("cavalier",1,7));
-		pieces.push(new piece("cavalier",6,7));
-		pieces.push(new piece("fou",2,7));
-		pieces.push(new piece("fou",5,7));
-		pieces.push(new piece("dame",3,7));
-		pieces.push(new piece("roi",4,7));
-		actualisationPieces();
+		pieces.push(new piece("b_tour",0,7));
+		pieces.push(new piece("b_tour",7,7));
+		pieces.push(new piece("b_cavalier",1,7));
+		pieces.push(new piece("b_cavalier",6,7));
+		pieces.push(new piece("b_fou",2,7));
+		pieces.push(new piece("b_fou",5,7));
+		pieces.push(new piece("b_dame",3,7));
+		pieces.push(new piece("b_roi",4,7));
 
+		 i =0;
+			while (i!=9) {
+					pieces.push(new piece("n_pion",i,1));
+					i++;
+			}
+			pieces.push(new piece("n_tour",0,0));
+			pieces.push(new piece("n_tour",7,0));
+			pieces.push(new piece("n_cavalier",1,0));
+			pieces.push(new piece("n_cavalier",6,0));
+			pieces.push(new piece("n_fou",2,0));
+			pieces.push(new piece("n_fou",5,0));
+			pieces.push(new piece("n_dame",3,0));
+			pieces.push(new piece("n_roi",4,0));
+			actualisationPieces();
 
 
 }
