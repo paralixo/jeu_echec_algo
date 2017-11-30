@@ -177,6 +177,19 @@ window.onload = function() {
 					 	};
 					 	myImg.src = 'pieces.png';
 					 }
+					 if (this.nom == "roi") {
+					  this.mouvement = [];
+					  this.attaque = [];
+					  this.mouvementSpecial = [];
+
+					  var x_pion = this.positionX * tailleBloc;
+					  var y_pion = this.positionY * tailleBloc
+					  var myImg = new Image();
+					  myImg.onload = function() {
+					 		 ctx.drawImage(myImg, 0, 265, 100, 380, x_pion+8, y_pion+4, 75, 280);
+					  };
+					  myImg.src = 'pieces.png';
+					 }
 				}
 
     }
@@ -194,6 +207,7 @@ function initPiece(){
 		pieces.push(new piece("fou",2,7));
 		pieces.push(new piece("fou",5,7));
 		pieces.push(new piece("dame",3,7));
+		pieces.push(new piece("roi",4,7));
 		actualisationPieces();
 
 
