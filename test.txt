@@ -1,0 +1,129 @@
+if (this.nom == "pion") {
+    this.mouvement = [[this.positionX, this.positionY-1]];
+    this.attaque = [[this.positionX-1, this.positionY-1], [this.positionX+1, this.positionY-1]];
+    this.mouvementSpecial = [[this.positionX, this.positionY-2]];
+
+    var x_pion = this.positionX * tailleBloc;
+    var y_pion = this.positionY * tailleBloc
+    var myImg = new Image();
+    myImg.onload = function() {
+        ctx.drawImage(myImg, 900, 275, 100, 370, x_pion+17, y_pion+5, 75, 280);
+    };
+    myImg.src = 'pieces.png';
+}
+if (this.nom == "tour") {
+    this.mouvement = [];
+    this.attaque = [];
+    this.mouvementSpecial = [];
+
+    var x_pion = this.positionX * tailleBloc;
+    var y_pion = this.positionY * tailleBloc
+    var myImg = new Image();
+    myImg.onload = function() {
+        ctx.drawImage(myImg, 360, 275, 100, 370, x_pion+14.5, y_pion+7, 75, 280);
+    };
+    myImg.src = 'pieces.png';
+}
+if (this.nom == "cavalier") {
+  this.mouvement = [];
+  this.attaque = [];
+  this.mouvementSpecial = [];
+
+  var x_pion = this.positionX * tailleBloc;
+  var y_pion = this.positionY * tailleBloc
+  var myImg = new Image();
+  myImg.onload = function() {
+      ctx.drawImage(myImg, 705, 275, 100, 370, x_pion+4, y_pion+7, 75, 280);
+  };
+  myImg.src = 'pieces.png';
+}
+if (this.nom == "fou") {
+ this.mouvement = [];
+ this.attaque = [];
+ this.mouvementSpecial = [];
+
+ var x_pion = this.positionX * tailleBloc;
+ var y_pion = this.positionY * tailleBloc
+ var myImg = new Image();
+ myImg.onload = function() {
+     ctx.drawImage(myImg, 530, 265, 100, 380, x_pion+7, y_pion+6, 75, 280);
+ };
+ myImg.src = 'pieces.png';
+}
+if (this.nom == "dame") {
+this.mouvement = [];
+this.attaque = [];
+this.mouvementSpecial = [];
+
+var x_pion = this.positionX * tailleBloc;
+var y_pion = this.positionY * tailleBloc
+var myImg = new Image();
+myImg.onload = function() {
+    ctx.drawImage(myImg, 170, 265, 100, 380, x_pion+3, y_pion+6, 75, 280);
+};
+myImg.src = 'pieces.png';
+}
+if (this.nom == "roi") {
+this.mouvement = [];
+this.attaque = [];
+this.mouvementSpecial = [];
+
+var x_pion = this.positionX * tailleBloc;
+var y_pion = this.positionY * tailleBloc
+var myImg = new Image();
+myImg.onload = function() {
+   ctx.drawImage(myImg, 0, 265, 100, 380, x_pion+8, y_pion+4, 75, 280);
+};
+myImg.src = 'pieces.png';
+}
+
+
+if (this.nom == "tour") {
+    for (var i = 0; i < 8; i++) {
+        this.mouvement.push([this.positionX, this.positionY+i])
+        this.mouvement.push([this.positionX, this.positionY-i])
+        this.mouvement.push([this.positionX+i, this.positionY])
+        this.mouvement.push([this.positionX-i, this.positionY])
+    }
+    this.attaque = this.mouvement;
+    this.mouvementSpecial = "le roque";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function initPiece(){
+		var i =0;
+		while (i!=9) {
+				pieces.push(new piece("pion",i,1));
+				i++;
+		}
+		pieces.push(new piece("tour",0,0));
+		pieces.push(new piece("tour",7,0));
+		pieces.push(new piece("cavalier",1,0));
+		pieces.push(new piece("cavalier",6,0));
+		pieces.push(new piece("fou",2,0));
+		pieces.push(new piece("fou",5,0));
+		pieces.push(new piece("dame",3,0));
+		pieces.push(new piece("roi",4,0));
+		actualisationPieces();
