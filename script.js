@@ -191,7 +191,7 @@ window.onload = function () {
                 }
 
                 // Défini les mouvements possibles des tours
-                if (this.nom.search("tour") != -1) {
+                if (this.nom.search("tour") != -1|| this.nom.search("dame") != -1) {
 
                     var mouv1 = true;
                     var mouv2 = true;
@@ -246,7 +246,7 @@ window.onload = function () {
                     this.mouvementSpecial = "le truc avec le roi";
                 }
                 
-                if (this.nom.search("fou") != -1) {
+                if (this.nom.search("fou") != -1 || this.nom.search("dame") != -1) {
 
                     var mouv1 = true;
                     var mouv2 = true;
