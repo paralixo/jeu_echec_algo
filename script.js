@@ -275,11 +275,11 @@ window.onload = function () {
                                     mouv2 = false;
                                 }
                             }
-                            if (cases[j].positionX == this.positionX+i && cases[j].positionY == this.positionY-i && mouv3 == true) {
+                            if (cases[j].positionX == this.positionX-i && cases[j].positionY == this.positionY-i && mouv3 == true) {
                                 if (cases[j].contient == "vide") {
-                                    this.mouvement.push([this.positionX+i, this.positionY-i]);
+                                    this.mouvement.push([this.positionX-i, this.positionY-i]);
                                 } else if (cases[j].contient[0] != this.equipe) {
-                                    this.attaque.push([this.positionX+i, this.positionY-i]);
+                                    this.attaque.push([this.positionX-i, this.positionY-i]);
                                     mouv3 = false;
                                 } else {
                                     mouv3 = false;
