@@ -113,6 +113,7 @@ window.onload = function () {
             this.mouvement = [];
             this.attaque = [];
             this.mouvementSpecial = [];
+            this.equipe = nom[0]; // "b" ou "n"
 
 
             /* ---#--- METHODES ---#--- */
@@ -202,32 +203,40 @@ window.onload = function () {
                             if (cases[j].positionX == this.positionX && cases[j].positionY == this.positionY+i && mouv1 == true) {
                                 if (cases[j].contient == "vide") {
                                     this.mouvement.push([this.positionX, this.positionY+i]);
-                                } else {
+                                } else if (cases[j].contient[0] != this.equipe){
                                     this.attaque.push([this.positionX, this.positionY+i]);
+                                    mouv1 = false;
+                                } else {
                                     mouv1 = false;
                                 }
                             }
                             if (cases[j].positionX == this.positionX && cases[j].positionY == this.positionY-i && mouv2 == true) {
                                 if (cases[j].contient == "vide") {
                                     this.mouvement.push([this.positionX, this.positionY-i]);
-                                } else {
+                                } else if (cases[j].contient[0] != this.equipe) {
                                     this.attaque.push([this.positionX, this.positionY-i]);
+                                    mouv2 = false;
+                                } else {
                                     mouv2 = false;
                                 }
                             }
                             if (cases[j].positionX == this.positionX+i && cases[j].positionY == this.positionY && mouv3 == true) {
                                 if (cases[j].contient == "vide") {
                                     this.mouvement.push([this.positionX+i, this.positionY]);
-                                } else {
+                                } else if (cases[j].contient[0] != this.equipe) {
                                     this.attaque.push([this.positionX+i, this.positionY]);
+                                    mouv3 = false;
+                                } else {
                                     mouv3 = false;
                                 }
                             }
                             if (cases[j].positionX == this.positionX-i && cases[j].positionY == this.positionY && mouv4 == true) {
                                 if (cases[j].contient == "vide") {
                                     this.mouvement.push([this.positionX-i, this.positionY]);
-                                } else {
+                                } else if (cases[j].contient[0] != this.equipe) {
                                     this.attaque.push([this.positionX-i, this.positionY]);
+                                    mouv4 = false;
+                                } else {
                                     mouv4 = false;
                                 }
                             }
