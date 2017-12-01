@@ -15,8 +15,8 @@ window.onload = function () {
     // On va chercher l'image et on attend qu'elle charge
         myImg = new Image();
     myImg.src = 'pieces.png';
+    
     myImg.onload = function () {
-
 
         /* ---#--- FONCTIONS & OBJETS ---#--- */
 
@@ -93,6 +93,14 @@ window.onload = function () {
                 if (pieces[i].vivant == true) {
                     pieces[i].init();
                 }
+            }
+        }
+        
+        function actualisationCases() {
+            var i = 0;
+            for (i in cases) {
+                ctx.fillStyle = cases[i].couleur;
+                ctx.fillRect(cases[i].positionX*tailleBloc, cases[i].positionY*tailleBloc, tailleBloc, tailleBloc);
             }
         }
 
@@ -296,6 +304,10 @@ window.onload = function () {
         canvas.onclick = function(e) {
 
             console.log(pieces);
+            
+            //atualisation pour empecher la pixellisation
+            actualisationCases();
+            actualisationPieces();
 
             // position de la souris dans le canvas en pixel
             var pos = trouverPosition(this);
