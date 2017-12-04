@@ -174,6 +174,18 @@ window.onload = function () {
                     afficherImg(170, 265, 100, 380, x_pion+3, y_pion+6, 75, 280);
                  }
                 if (this.nom == "b_roi") {
+                    this.mouvementsPossibles = [[this.positionX-1, this.positionY-1], [this.positionX, this.positionY-1], [this.positionX+1, this.positionY-1], [this.positionX-1, this.positionY], [this.positionX+1, this.positionY], [this.positionX-1, this.positionY+1], [this.positionX+1, this.positionY+1], [this.positionX, this.positionY+1]];
+                    
+                    for (var i = 0; i<this.mouvementsPossibles.length; i++) {
+                        for (var j in cases) {
+                            if (cases[j].positionX == this.mouvementsPossibles[i][0] && cases[j].positionY == this.mouvementsPossibles[i][1] && cases[j].contient[0] != this.nom[0]) {
+                                this.attaque.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);
+                            } else if (cases[j].contient == "vide") {
+                                this.mouvement.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);       
+                            }
+                        }
+                    }
+                    
                     afficherImg(0, 265, 100, 380, x_pion+8, y_pion+4, 75, 280);
                  }
 
@@ -205,6 +217,18 @@ window.onload = function () {
                     afficherImg(170, 115, 100, 100, x_pion+3, y_pion+6, 75, 75);
                 }
                 if (this.nom == "n_roi") {
+                    this.mouvementsPossibles = [[this.positionX-1, this.positionY-1], [this.positionX, this.positionY-1], [this.positionX+1, this.positionY-1], [this.positionX-1, this.positionY], [this.positionX+1, this.positionY], [this.positionX-1, this.positionY+1], [this.positionX+1, this.positionY+1], [this.positionX, this.positionY+1]];
+                    
+                    for (var i = 0; i<this.mouvementsPossibles.length; i++) {
+                        for (var j in cases) {
+                            if (cases[j].positionX == this.mouvementsPossibles[i][0] && cases[j].positionY == this.mouvementsPossibles[i][1] && cases[j].contient[0] != this.nom[0]) {
+                                this.attaque.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);
+                            } else if (cases[j].contient == "vide") {
+                                this.mouvement.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);       
+                            }
+                        }
+                    }
+                    
                     afficherImg(0, 115, 100, 100, x_pion+8, y_pion+4, 75, 75);
                 }
 
