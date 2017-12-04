@@ -2,7 +2,7 @@ window.onload = function () {
     // Mise en place du canvas
 	var canvas = document.getElementById('canvas'),
 	    ctx = canvas.getContext('2d'),
-        
+
     //Variables utiles
         tailleBloc = 81.25,
         width = 650,
@@ -11,7 +11,7 @@ window.onload = function () {
         nbBlocsHauteur = height / tailleBloc,
         cases = [],
         pieces = [],
-        
+
     // On va chercher l'image et on attend qu'elle charge
         myImg = new Image();
     myImg.src = 'pieces.png';
@@ -234,7 +234,7 @@ window.onload = function () {
 
         // Permet d'afficher la portion d'image voulu pour les pieces
         function afficherImg(xImg, yImg, wImg, hImg, xPos, yPos, w, h) {
-            ctx.drawImage(myImg, xImg, yImg, wImg, hImg, xPos, yPos, w, h);  
+            ctx.drawImage(myImg, xImg, yImg, wImg, hImg, xPos, yPos, w, h);
         }
 
         // Permet d'initialiser le plateau (avec les pieces)
