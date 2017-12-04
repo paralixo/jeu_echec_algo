@@ -96,6 +96,7 @@ window.onload = function () {
             }
         }
         
+        // Permet de ré-initialiser les cases du jeu
         function actualisationCases() {
             var i = 0;
             for (i in cases) {
@@ -146,7 +147,16 @@ window.onload = function () {
 
                 if (this.nom == "b_pion") {
                     this.mouvement = [[this.positionX, this.positionY-1]];
-                    this.attaque = [[this.positionX-1, this.positionY-1], [this.positionX+1, this.positionY-1]];
+                    this.attaquesPossibles = [[this.positionX-1, this.positionY-1], [this.positionX+1, this.positionY-1]];
+                    
+                    for (var i = 0; i<this.attaquesPossibles.length; i++) {
+                        for (var j in cases) {
+                            if (cases[j].positionX == this.attaquesPossibles[i][0] && cases[j].positionY == this.attaquesPossibles[i][1] && cases[j].contient[0] != this.nom[0]) {
+                                this.attaque.push([this.attaquesPossibles[i][0], this.attaquesPossibles[i][1]]);
+                            }
+                        }
+                    }
+                    
                     this.mouvementSpecial = [[this.positionX, this.positionY-2]];
 
                     afficherImg(900, 275, 100, 370, x_pion+17, y_pion+5, 75, 280);
@@ -169,7 +179,15 @@ window.onload = function () {
 
                 if (this.nom == "n_pion") {
                     this.mouvement = [[this.positionX, this.positionY+1]];
-                    this.attaque = [[this.positionX+1, this.positionY+1], [this.positionX-1, this.positionY+1]];
+                    this.attaquesPossibles = [[this.positionX+1, this.positionY+1], [this.positionX-1, this.positionY+1]];
+                    
+                    for (var i = 0; i<this.attaquesPossibles.length; i++) {
+                        for (var j in cases) {
+                            if (cases[j].positionX == this.attaquesPossibles[i][0] && cases[j].positionY == this.attaquesPossibles[i][1] && cases[j].contient[0] != this.nom[0]) {
+                                this.attaque.push([this.attaquesPossibles[i][0], this.attaquesPossibles[i][1]]);
+                            }
+                        }
+                    }
                     this.mouvementSpecial = [[this.positionX, this.positionY+2]];
 
                     afficherImg(900, 125, 100, 100, x_pion+17, y_pion+5, 75, 75);
