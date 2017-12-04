@@ -14,7 +14,7 @@ window.onload = function () {
 
     // On va chercher l'image et on attend qu'elle charge
         myImg = new Image();
-    myImg.src = 'pieces.png';
+    myImg.src = 'pieces_colores.png';
     
     myImg.onload = function () {
 
