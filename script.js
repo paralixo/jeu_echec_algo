@@ -15,8 +15,8 @@ window.onload = function () {
     // On va chercher l'image et on attend qu'elle charge
         myImg = new Image();
     myImg.src = 'pieces.png';
+    
     myImg.onload = function () {
-
 
         /* ---#--- FONCTIONS & OBJETS ---#--- */
 
@@ -95,6 +95,14 @@ window.onload = function () {
                 }
             }
         }
+        
+        function actualisationCases() {
+            var i = 0;
+            for (i in cases) {
+                ctx.fillStyle = cases[i].couleur;
+                ctx.fillRect(cases[i].positionX*tailleBloc, cases[i].positionY*tailleBloc, tailleBloc, tailleBloc);
+            }
+        }
 
         // L'objet pièce avec x et y en cases pas en pixels
         function piece(nom, x, y) {
@@ -105,6 +113,7 @@ window.onload = function () {
             this.mouvement = [];
             this.attaque = [];
             this.mouvementSpecial = [];
+            this.equipe = nom[0]; // "b" ou "n"
 
 
             /* ---#--- METHODES ---#--- */
@@ -182,7 +191,7 @@ window.onload = function () {
                 }
 
                 // Défini les mouvements possibles des tours
-                if (this.nom.search("tour") != -1) {
+                if (this.nom.search("tour") != -1|| this.nom.search("dame") != -1) {
 
                     var mouv1 = true;
                     var mouv2 = true;
@@ -194,32 +203,40 @@ window.onload = function () {
                             if (cases[j].positionX == this.positionX && cases[j].positionY == this.positionY+i && mouv1 == true) {
                                 if (cases[j].contient == "vide") {
                                     this.mouvement.push([this.positionX, this.positionY+i]);
-                                } else {
+                                } else if (cases[j].contient[0] != this.equipe){
                                     this.attaque.push([this.positionX, this.positionY+i]);
+                                    mouv1 = false;
+                                } else {
                                     mouv1 = false;
                                 }
                             }
                             if (cases[j].positionX == this.positionX && cases[j].positionY == this.positionY-i && mouv2 == true) {
                                 if (cases[j].contient == "vide") {
                                     this.mouvement.push([this.positionX, this.positionY-i]);
-                                } else {
+                                } else if (cases[j].contient[0] != this.equipe) {
                                     this.attaque.push([this.positionX, this.positionY-i]);
+                                    mouv2 = false;
+                                } else {
                                     mouv2 = false;
                                 }
                             }
                             if (cases[j].positionX == this.positionX+i && cases[j].positionY == this.positionY && mouv3 == true) {
                                 if (cases[j].contient == "vide") {
                                     this.mouvement.push([this.positionX+i, this.positionY]);
-                                } else {
+                                } else if (cases[j].contient[0] != this.equipe) {
                                     this.attaque.push([this.positionX+i, this.positionY]);
+                                    mouv3 = false;
+                                } else {
                                     mouv3 = false;
                                 }
                             }
                             if (cases[j].positionX == this.positionX-i && cases[j].positionY == this.positionY && mouv4 == true) {
                                 if (cases[j].contient == "vide") {
                                     this.mouvement.push([this.positionX-i, this.positionY]);
-                                } else {
+                                } else if (cases[j].contient[0] != this.equipe) {
                                     this.attaque.push([this.positionX-i, this.positionY]);
+                                    mouv4 = false;
+                                } else {
                                     mouv4 = false;
                                 }
                             }
@@ -228,6 +245,63 @@ window.onload = function () {
             //                this.attaque = this.mouvement;
                     this.mouvementSpecial = "le truc avec le roi";
                 }
+                
+                if (this.nom.search("fou") != -1 || this.nom.search("dame") != -1) {
+
+                    var mouv1 = true;
+                    var mouv2 = true;
+                    var mouv3 = true;
+                    var mouv4 = true;
+
+                    for (var i = 1; i <= 8; i++) {
+                        for (var j in cases) {
+                            if (cases[j].positionX == this.positionX+i && cases[j].positionY == this.positionY+i && mouv1 == true) {
+                                if (cases[j].contient == "vide") {
+                                    this.mouvement.push([this.positionX+i, this.positionY+i]);
+                                } else if (cases[j].contient[0] != this.equipe){
+                                    this.attaque.push([this.positionX+i, this.positionY+i]);
+                                    mouv1 = false;
+                                } else {
+                                    mouv1 = false;
+                                }
+                            }
+                            if (cases[j].positionX == this.positionX+i && cases[j].positionY == this.positionY-i && mouv2 == true) {
+                                if (cases[j].contient == "vide") {
+                                    this.mouvement.push([this.positionX+i, this.positionY-i]);
+                                } else if (cases[j].contient[0] != this.equipe) {
+                                    this.attaque.push([this.positionX+i, this.positionY-i]);
+                                    mouv2 = false;
+                                } else {
+                                    mouv2 = false;
+                                }
+                            }
+                            if (cases[j].positionX == this.positionX-i && cases[j].positionY == this.positionY-i && mouv3 == true) {
+                                if (cases[j].contient == "vide") {
+                                    this.mouvement.push([this.positionX-i, this.positionY-i]);
+                                } else if (cases[j].contient[0] != this.equipe) {
+                                    this.attaque.push([this.positionX-i, this.positionY-i]);
+                                    mouv3 = false;
+                                } else {
+                                    mouv3 = false;
+                                }
+                            }
+                            if (cases[j].positionX == this.positionX-i && cases[j].positionY == this.positionY+i && mouv4 == true) {
+                                if (cases[j].contient == "vide") {
+                                    this.mouvement.push([this.positionX-i, this.positionY+i]);
+                                } else if (cases[j].contient[0] != this.equipe) {
+                                    this.attaque.push([this.positionX-i, this.positionY+i]);
+                                    mouv4 = false;
+                                } else {
+                                    mouv4 = false;
+                                }
+                            }
+                        }
+                    }
+            //                this.attaque = this.mouvement;
+                    this.mouvementSpecial = "le truc avec le roi";
+                }
+                
+                
             }
 
         }
@@ -296,6 +370,10 @@ window.onload = function () {
         canvas.onclick = function(e) {
 
             console.log(pieces);
+            
+            //atualisation pour empecher la pixellisation
+            actualisationCases();
+            actualisationPieces();
 
             // position de la souris dans le canvas en pixel
             var pos = trouverPosition(this);
