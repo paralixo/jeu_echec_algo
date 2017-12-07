@@ -15,7 +15,7 @@ window.onload = function () {
     // On va chercher l'image et on attend qu'elle charge
         myImg = new Image();
     myImg.src = 'pieces_colores.png';
-    
+
     myImg.onload = function () {
 
         /* ---#--- FONCTIONS & OBJETS ---#--- */
@@ -95,7 +95,7 @@ window.onload = function () {
                 }
             }
         }
-        
+
         // Permet de ré-initialiser les cases du jeu
         function actualisationCases() {
             var i = 0;
@@ -148,7 +148,7 @@ window.onload = function () {
                 if (this.nom == "b_pion") {
                     this.mouvement = [[this.positionX, this.positionY-1]];
                     this.attaquesPossibles = [[this.positionX-1, this.positionY-1], [this.positionX+1, this.positionY-1]];
-                    
+
                     for (var i = 0; i<this.attaquesPossibles.length; i++) {
                         for (var j in cases) {
                             if (cases[j].positionX == this.attaquesPossibles[i][0] && cases[j].positionY == this.attaquesPossibles[i][1] && cases[j].contient[0] != this.nom[0]) {
@@ -156,7 +156,7 @@ window.onload = function () {
                             }
                         }
                     }
-                    
+
                     this.mouvementSpecial = [[this.positionX, this.positionY-2]];
 
                     afficherImg(900, 275, 100, 370, x_pion+17, y_pion+5, 75, 280);
@@ -175,24 +175,24 @@ window.onload = function () {
                  }
                 if (this.nom == "b_roi") {
                     this.mouvementsPossibles = [[this.positionX-1, this.positionY-1], [this.positionX, this.positionY-1], [this.positionX+1, this.positionY-1], [this.positionX-1, this.positionY], [this.positionX+1, this.positionY], [this.positionX-1, this.positionY+1], [this.positionX+1, this.positionY+1], [this.positionX, this.positionY+1]];
-                    
+
                     for (var i = 0; i<this.mouvementsPossibles.length; i++) {
                         for (var j in cases) {
                             if (cases[j].positionX == this.mouvementsPossibles[i][0] && cases[j].positionY == this.mouvementsPossibles[i][1] && cases[j].contient[0] != this.nom[0]) {
                                 this.attaque.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);
                             } else if (cases[j].contient == "vide") {
-                                this.mouvement.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);       
+                                this.mouvement.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);
                             }
                         }
                     }
-                    
+
                     afficherImg(0, 265, 100, 380, x_pion+8, y_pion+4, 75, 280);
                  }
 
                 if (this.nom == "n_pion") {
                     this.mouvement = [[this.positionX, this.positionY+1]];
                     this.attaquesPossibles = [[this.positionX+1, this.positionY+1], [this.positionX-1, this.positionY+1]];
-                    
+
                     for (var i = 0; i<this.attaquesPossibles.length; i++) {
                         for (var j in cases) {
                             if (cases[j].positionX == this.attaquesPossibles[i][0] && cases[j].positionY == this.attaquesPossibles[i][1] && cases[j].contient[0] != this.nom[0]) {
@@ -218,17 +218,17 @@ window.onload = function () {
                 }
                 if (this.nom == "n_roi") {
                     this.mouvementsPossibles = [[this.positionX-1, this.positionY-1], [this.positionX, this.positionY-1], [this.positionX+1, this.positionY-1], [this.positionX-1, this.positionY], [this.positionX+1, this.positionY], [this.positionX-1, this.positionY+1], [this.positionX+1, this.positionY+1], [this.positionX, this.positionY+1]];
-                    
+
                     for (var i = 0; i<this.mouvementsPossibles.length; i++) {
                         for (var j in cases) {
                             if (cases[j].positionX == this.mouvementsPossibles[i][0] && cases[j].positionY == this.mouvementsPossibles[i][1] && cases[j].contient[0] != this.nom[0]) {
                                 this.attaque.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);
                             } else if (cases[j].contient == "vide") {
-                                this.mouvement.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);       
+                                this.mouvement.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);
                             }
                         }
                     }
-                    
+
                     afficherImg(0, 115, 100, 100, x_pion+8, y_pion+4, 75, 75);
                 }
 
@@ -287,8 +287,27 @@ window.onload = function () {
             //                this.attaque = this.mouvement;
                     this.mouvementSpecial = "le truc avec le roi";
                 }
-                
-                if (this.nom.search("fou") != -1 || this.nom.search("dame") != -1) {
+
+									// Défini les mouvements du cavalier
+									if (this.nom.search("cavalier") != -1) {
+										this.mouvementsPossibles = [[this.positionX+1 , this.positionY-2 ],[this.positionX-1 , this.positionY-2],[this.positionX+2 , this.positionY+1],[this.positionX+2 , this.positionY-1],[this.positionX-2 , this.positionY+1],[this.positionX-2 , this.positionY-1],[this.positionX+1 , this.positionY+2],[this.positionX-1 , this.positionY+2]]
+
+											for (var i = 0; i<this.mouvementsPossibles.length; i++) {
+												for (var j in cases) {
+														if (cases[j].positionX == this.mouvementsPossibles[i][0] && cases[j].positionY == this.mouvementsPossibles[i][1] && cases[j].contient[0] != this.nom[0]) {
+																this.attaque.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);
+														} else if (cases[j].contient == "vide") {
+																this.mouvement.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);
+														}
+												}
+										}
+									}
+
+
+
+
+
+									if (this.nom.search("fou") != -1 || this.nom.search("dame") != -1) {
 
                     var mouv1 = true;
                     var mouv2 = true;
@@ -342,8 +361,8 @@ window.onload = function () {
             //                this.attaque = this.mouvement;
                     this.mouvementSpecial = "le truc avec le roi";
                 }
-                
-                
+
+
             }
 
         }
@@ -412,7 +431,7 @@ window.onload = function () {
         canvas.onclick = function(e) {
 
             console.log(pieces);
-            
+
             //atualisation pour empecher la pixellisation
             actualisationCases();
             actualisationPieces();
