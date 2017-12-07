@@ -16,6 +16,9 @@ window.onload = function () {
 		// On va chercher l'image et on attend qu'elle charge
         myImg = new Image();
     myImg.src = 'pieces_colores.png';
+    
+    $('#j1').hide();
+    $('#j2').hide();
 
     myImg.onload = function () {
 
@@ -504,9 +507,16 @@ window.onload = function () {
                                 x = null;
                                 y = null;
 
-																cpt++;
-
-														}
+								cpt++;
+                                
+                                if (cpt%2 == 0){
+                                    $('#j1').fadeIn('slow');
+                                    $('#j1').fadeOut('slow');
+                                } else {
+                                    $('#j2').fadeIn('slow');
+                                    $('#j2').fadeOut('slow');
+                                }
+                            }
                         }
                     }
                 }
