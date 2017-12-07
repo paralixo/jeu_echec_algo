@@ -5,7 +5,9 @@
 
 canvas {
     border: 1px black solid;
-    margin-left: 50px;
+    margin-left: 320px;
+    margin-top: 50px;
+    transform: rotate(180 deg);
 }
 
 #j1 {
