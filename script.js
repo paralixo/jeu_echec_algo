@@ -430,6 +430,16 @@ window.onload = function () {
             }
             return {'x':x, 'y':y};
         }
+        
+        function verifVictoire(){
+            var roiBlanc = [];
+            for (var i in pieces) {
+                if (pieces[i].nom == "b_roi") {
+                    roiBlanc = pieces[i].mouvement;
+                }
+            }
+            console.log(pieces[i].mouvement.length);
+        }
 
 
         /* ---#--- MAIN ---#--- */
@@ -440,8 +450,6 @@ window.onload = function () {
 
         // Si on clique sur le canvas
         canvas.onclick = function(e) {
-
-            console.log(pieces);
 
             //atualisation pour empecher la pixellisation
             actualisationCases();
@@ -514,11 +522,8 @@ window.onload = function () {
             // permet de connaître les déplacments possibles d'un pion lorsqu'on clique dessus
             for (var k in pieces) {
                 if (x == pieces[k].positionX && y == pieces[k].positionY && pieces[k].vivant == true && pieces[k].equipe == tour) {
-    //                console.log(pieces[k]);
-    //                console.log(pieces[i].mouvement);
+                    console.log(pieces[k]);
                     for (var j in pieces[k].mouvement) {
-    //                    console.log("X: " + pieces[i].mouvement[j][0]);
-    //                    console.log("Y: " + pieces[i].mouvement[j][1]);
                         prendrecouleurEvenement(pieces[k].mouvement[j][0], pieces[k].mouvement[j][1], "green", x, y);
                     }
                     for (var l in pieces[k].attaque) {
@@ -528,7 +533,8 @@ window.onload = function () {
                 }
             }
 
-
+            
+            verifVictoire();
         }
 
     };
