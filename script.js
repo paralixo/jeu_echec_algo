@@ -116,6 +116,7 @@ window.onload = function () {
             this.attaque = [];
             this.mouvementSpecial = [];
             this.equipe = nom[0]; // "b" ou "n"
+            this.aBouge = false;
 
 
             /* ---#--- METHODES ---#--- */
@@ -143,12 +144,18 @@ window.onload = function () {
 
                 this.mouvement = [];
                 this.attaque = [];
-                this.mouvementSpecial = [];
 
 
                 if (this.nom == "b_pion") {
                     this.mouvement = [[this.positionX, this.positionY-1]];
                     this.attaquesPossibles = [[this.positionX-1, this.positionY-1], [this.positionX+1, this.positionY-1]];
+                    
+                    this.mouvementSpecial = [this.positionX, this.positionY-2];
+                    if (this.aBouge == false) {
+                        this.mouvement.push(this.mouvementSpecial);
+                    } else {
+                        this.mouvement[1] = [99,99];
+                    }
 
                     for (var i = 0; i<this.attaquesPossibles.length; i++) {
                         for (var j in cases) {
@@ -158,7 +165,6 @@ window.onload = function () {
                         }
                     }
 
-                    this.mouvementSpecial = [[this.positionX, this.positionY-2]];
 
                     afficherImg(900, 275, 100, 370, x_pion+17, y_pion+5, 75, 280);
                 }
@@ -193,6 +199,13 @@ window.onload = function () {
                 if (this.nom == "n_pion") {
                     this.mouvement = [[this.positionX, this.positionY+1]];
                     this.attaquesPossibles = [[this.positionX+1, this.positionY+1], [this.positionX-1, this.positionY+1]];
+                    
+                    this.mouvementSpecial = [this.positionX, this.positionY+2];
+                    if (this.aBouge == false) {
+                        this.mouvement.push(this.mouvementSpecial);
+                    } else {
+                        this.mouvement[1] = [99,99];
+                    }
 
                     for (var i = 0; i<this.attaquesPossibles.length; i++) {
                         for (var j in cases) {
@@ -201,7 +214,7 @@ window.onload = function () {
                             }
                         }
                     }
-                    this.mouvementSpecial = [[this.positionX, this.positionY+2]];
+
 
                     afficherImg(900, 125, 100, 100, x_pion+17, y_pion+5, 75, 75);
                 }
@@ -233,7 +246,7 @@ window.onload = function () {
                     afficherImg(0, 115, 100, 100, x_pion+8, y_pion+4, 75, 75);
                 }
 
-                // Défini les mouvements possibles des tours
+                // Défini les mouvements possibles des tours et de la reine
                 if (this.nom.search("tour") != -1|| this.nom.search("dame") != -1) {
 
                     var mouv1 = true;
@@ -289,7 +302,7 @@ window.onload = function () {
                     this.mouvementSpecial = "le truc avec le roi";
                 }
 
-                    // Défini les mouvements du cavalier
+                // Défini les mouvements du cavalier
                 if (this.nom.search("cavalier") != -1) {
                     this.mouvementsPossibles = [[this.positionX+1 , this.positionY-2 ],[this.positionX-1 , this.positionY-2],[this.positionX+2 , this.positionY+1],[this.positionX+2 , this.positionY-1],[this.positionX-2 , this.positionY+1],[this.positionX-2 , this.positionY-1],[this.positionX+1 , this.positionY+2],[this.positionX-1 , this.positionY+2]]
 
@@ -303,11 +316,8 @@ window.onload = function () {
                             }
                     }
                 }
-
-
-
-
-
+                
+                // Défini les mouvements du fou et de la reine
                 if (this.nom.search("fou") != -1 || this.nom.search("dame") != -1) {
 
                 var mouv1 = true;
@@ -478,6 +488,7 @@ window.onload = function () {
                                 pieces[m].suppr();
                                 pieces[m].positionX = x;
                                 pieces[m].positionY = y;
+                                pieces[m].aBouge = true;
                                 effacerCouleurEvenement();
                                 actualisationPieces();
 
@@ -493,17 +504,16 @@ window.onload = function () {
                 }
             }
 
-
+            
+            if (cpt%2 == 0){
+                    tour = "b";
+            } else {
+                tour = "n";
+            }
+            
             // permet de connaître les déplacments possibles d'un pion lorsqu'on clique dessus
-
-							for (var k in pieces) {
-								if (cpt%2 == 0){
-										tour = "b";
-								} else {
-									tour = "n";
-								}
-								console.log(tour);
-								if (x == pieces[k].positionX && y == pieces[k].positionY && pieces[k].vivant == true && pieces[k].equipe == tour) {
+            for (var k in pieces) {
+                if (x == pieces[k].positionX && y == pieces[k].positionY && pieces[k].vivant == true && pieces[k].equipe == tour) {
     //                console.log(pieces[k]);
     //                console.log(pieces[i].mouvement);
                     for (var j in pieces[k].mouvement) {
