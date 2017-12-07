@@ -8,3 +8,20 @@ canvas {
     margin-left: 50px;
 }
 
+#j1 {
+  color:red;
+  font-size: 120px;
+  font-family: 'Anton', sans-serif;
+}
+
+#j2 {
+  color:blue;
+  font-size: 120px;
+  font-family: 'Anton', sans-serif;
+}
+
+div {
+  position:absolute;
+  top : 245px ;
+  left: 321px ;
+}
