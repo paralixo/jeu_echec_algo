@@ -11,8 +11,9 @@ window.onload = function () {
         nbBlocsHauteur = height / tailleBloc,
         cases = [],
         pieces = [],
-				cpt = 0 ,
-				tour ,
+        cpt = 0 ,
+        tour ,
+        posPlateau = 0,
 		// On va chercher l'image et on attend qu'elle charge
         myImg = new Image();
     myImg.src = 'pieces_colores.png';
@@ -380,6 +381,15 @@ window.onload = function () {
             }
 
         }
+        
+//        function tournerImage(degre, x, y){
+//            ctx.clearRect(x,y,x + tailleBloc,y + tailleBloc);
+//            ctx.save();
+//            ctx.translate(canvas.width/2,canvas.height/2);
+//            ctx.rotate(degre*Math.PI/180);
+//            ctx.drawImage(myImg,-myImg.width/2,-myImg.width/2);
+//            ctx.restore();
+//        }
 
         // Permet d'afficher la portion d'image voulu pour les pieces
         function afficherImg(xImg, yImg, wImg, hImg, xPos, yPos, w, h) {
@@ -465,6 +475,12 @@ window.onload = function () {
             // position de la souris dans le canvas en case
             var x = parseInt(pixelX/tailleBloc);
             var y = parseInt(pixelY/tailleBloc);
+            
+            if (cpt%2 != 0){
+             
+                x = nbBlocsLargeur - x - 1;
+                y = nbBlocsHauteur - y - 1;
+            }
 
 
             // Gère les clics sur les cases (déplacements, attaques...)
@@ -508,14 +524,16 @@ window.onload = function () {
                                 y = null;
 
 								cpt++;
-                                
                                 if (cpt%2 == 0){
                                     $('#j1').fadeIn('slow');
                                     $('#j1').fadeOut('slow');
+                                    canvas.className= "derotation";
                                 } else {
                                     $('#j2').fadeIn('slow');
                                     $('#j2').fadeOut('slow');
+                                    canvas.className= "rotation";
                                 }
+                                
                             }
                         }
                     }
@@ -524,7 +542,7 @@ window.onload = function () {
 
             
             if (cpt%2 == 0){
-                    tour = "b";
+                tour = "b";
             } else {
                 tour = "n";
             }
