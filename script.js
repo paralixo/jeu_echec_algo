@@ -11,8 +11,9 @@ window.onload = function () {
         nbBlocsHauteur = height / tailleBloc,
         cases = [],
         pieces = [],
-
-    // On va chercher l'image et on attend qu'elle charge
+				cpt = 0 ,
+				tour ,
+		// On va chercher l'image et on attend qu'elle charge
         myImg = new Image();
     myImg.src = 'pieces_colores.png';
 
@@ -483,7 +484,10 @@ window.onload = function () {
                                 // permet de "déselectionner" la pièce
                                 x = null;
                                 y = null;
-                            }
+
+																cpt++;
+
+														}
                         }
                     }
                 }
@@ -491,9 +495,16 @@ window.onload = function () {
 
 
             // permet de connaître les déplacments possibles d'un pion lorsqu'on clique dessus
-            for (var k in pieces) {
-                if (x == pieces[k].positionX && y == pieces[k].positionY && pieces[k].vivant == true) {
-                    console.log(pieces[k]);
+
+							for (var k in pieces) {
+								if (cpt%2 == 0){
+										tour = "b";
+								} else {
+									tour = "n";
+								}
+								console.log(tour);
+								if (x == pieces[k].positionX && y == pieces[k].positionY && pieces[k].vivant == true && piece[k].nom[0] == "b") {
+    //                console.log(pieces[k]);
     //                console.log(pieces[i].mouvement);
                     for (var j in pieces[k].mouvement) {
     //                    console.log("X: " + pieces[i].mouvement[j][0]);
