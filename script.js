@@ -503,7 +503,7 @@ window.onload = function () {
 									tour = "n";
 								}
 								console.log(tour);
-								if (x == pieces[k].positionX && y == pieces[k].positionY && pieces[k].vivant == true && piece[k].nom[0] == "b") {
+								if (x == pieces[k].positionX && y == pieces[k].positionY && pieces[k].vivant == true && pieces[k].equipe == tour) {
     //                console.log(pieces[k]);
     //                console.log(pieces[i].mouvement);
                     for (var j in pieces[k].mouvement) {
