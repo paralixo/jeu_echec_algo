@@ -17,7 +17,7 @@ window.onload = function () {
 		// On va chercher l'image et on attend qu'elle charge
         myImg = new Image();
     myImg.src = 'pieces_colores.png';
-    
+
     $('#j1').hide();
     $('#j2').hide();
 
@@ -153,7 +153,7 @@ window.onload = function () {
                 if (this.nom == "b_pion") {
                     this.mouvement = [[this.positionX, this.positionY-1]];
                     this.attaquesPossibles = [[this.positionX-1, this.positionY-1], [this.positionX+1, this.positionY-1]];
-                    
+
                     this.mouvementSpecial = [this.positionX, this.positionY-2];
                     if (this.aBouge == false) {
                         this.mouvement.push(this.mouvementSpecial);
@@ -203,7 +203,7 @@ window.onload = function () {
                 if (this.nom == "n_pion") {
                     this.mouvement = [[this.positionX, this.positionY+1]];
                     this.attaquesPossibles = [[this.positionX+1, this.positionY+1], [this.positionX-1, this.positionY+1]];
-                    
+
                     this.mouvementSpecial = [this.positionX, this.positionY+2];
                     if (this.aBouge == false) {
                         this.mouvement.push(this.mouvementSpecial);
@@ -320,7 +320,7 @@ window.onload = function () {
                             }
                     }
                 }
-                
+
                 // Défini les mouvements du fou et de la reine
                 if (this.nom.search("fou") != -1 || this.nom.search("dame") != -1) {
 
@@ -381,7 +381,7 @@ window.onload = function () {
             }
 
         }
-        
+
 //        function tournerImage(degre, x, y){
 //            ctx.clearRect(x,y,x + tailleBloc,y + tailleBloc);
 //            ctx.save();
@@ -443,7 +443,7 @@ window.onload = function () {
             }
             return {'x':x, 'y':y};
         }
-        
+
         function verifVictoire(){
             var roiBlanc = [];
             for (var i in pieces) {
@@ -475,9 +475,9 @@ window.onload = function () {
             // position de la souris dans le canvas en case
             var x = parseInt(pixelX/tailleBloc);
             var y = parseInt(pixelY/tailleBloc);
-            
+
             if (cpt%2 != 0){
-             
+
                 x = nbBlocsLargeur - x - 1;
                 y = nbBlocsHauteur - y - 1;
             }
@@ -524,6 +524,7 @@ window.onload = function () {
                                 y = null;
 
 								cpt++;
+
                                 if (cpt%2 == 0){
                                     $('#j1').fadeIn('slow');
                                     $('#j1').fadeOut('slow');
@@ -533,20 +534,20 @@ window.onload = function () {
                                     $('#j2').fadeOut('slow');
                                     canvas.className= "rotation";
                                 }
-                                
+
                             }
                         }
                     }
                 }
             }
 
-            
+
             if (cpt%2 == 0){
                 tour = "b";
             } else {
                 tour = "n";
             }
-            
+
             // permet de connaître les déplacments possibles d'un pion lorsqu'on clique dessus
             for (var k in pieces) {
                 if (x == pieces[k].positionX && y == pieces[k].positionY && pieces[k].vivant == true && pieces[k].equipe == tour) {
@@ -561,7 +562,7 @@ window.onload = function () {
                 }
             }
 
-            
+
             verifVictoire();
         }
 

@@ -52,11 +52,11 @@ div {
 }
 
 .rotation {
-    -webkit-animation: rotation 0.75s linear;
+    -webkit-animation: rotation 1.25s linear;
     transform: rotate(180deg);
 }
 
 .derotation {
-    -webkit-animation: derotation 0.75s linear;
+    -webkit-animation: derotation 1.25s linear;
     transform: rotate(360deg);
 }
