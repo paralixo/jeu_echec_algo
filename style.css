@@ -10,6 +10,8 @@ canvas {
     /*transform: rotate(180 deg);*/
 }
 
+/* AFFICHAGE DE J1 J2 */
+
 #j1 {
   color:red;
   font-size: 120px;
@@ -26,4 +28,35 @@ div {
   position:absolute;
   top : 285px ;
   left: 589px ;
+}
+
+
+/* GERE LA ROTATION DU PLATEAU */
+
+@-webkit-keyframes rotation {
+    from{
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(180deg);
+    }
+}
+
+@-webkit-keyframes derotation {
+    from{
+        -webkit-transform: rotate(180deg);
+    }
+    to{
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.rotation {
+    -webkit-animation: rotation 1.25s linear;
+    transform: rotate(180deg);
+}
+
+.derotation {
+    -webkit-animation: derotation 1.25s linear;
+    transform: rotate(360deg);
 }
