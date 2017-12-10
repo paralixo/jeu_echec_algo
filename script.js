@@ -37,8 +37,8 @@ window.onload = function () {
                         ctx.fillStyle = "white";
                     }
                     if (cpt%2 === 1){
-                        couleur_fond = "grey";
-                        ctx.fillStyle = "grey";
+                        couleur_fond = "silver";
+                        ctx.fillStyle = "silver";
                     }
                     ctx.fillRect(i*tailleBloc, j*tailleBloc, tailleBloc, tailleBloc);
                     cases.push(new carre(couleur_fond, j, i));
@@ -528,11 +528,13 @@ window.onload = function () {
                                 if (cpt%2 == 0){
                                     $('#j1').fadeIn('slow');
                                     $('#j1').fadeOut('slow');
-                                    canvas.className= "derotation";
+																		$('#pieces').rotation(180)
+																		canvas.className= "derotation";
                                 } else {
                                     $('#j2').fadeIn('slow');
                                     $('#j2').fadeOut('slow');
-                                    canvas.className= "rotation";
+																		$('#pieces').rotation(180);
+																		canvas.className= "rotation";
                                 }
 
                             }
