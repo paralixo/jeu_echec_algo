@@ -6,7 +6,7 @@
 canvas {
     border: 1px black solid;
     margin-left: 320px;
-    margin-top: 50px;
+
     /*transform: rotate(180 deg);*/
 }
 
@@ -52,11 +52,11 @@ div {
 }
 
 .rotation {
-    -webkit-animation: rotation 0s linear;
+    -webkit-animation: rotation 0.8s linear;
     transform: rotate(180deg);
 }
 
 .derotation {
-    -webkit-animation: derotation 0s linear;
+    -webkit-animation: derotation 0.8s linear;
     transform: rotate(360deg);
 }
