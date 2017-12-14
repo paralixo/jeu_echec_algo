@@ -14,16 +14,30 @@ window.onload = function () {
         cpt = 0 ,
         tour ,
         posPlateau = 0,
+        
+        rotationPlateau = false,
 		// On va chercher l'image et on attend qu'elle charge
         myImg = new Image();
     myImg.src = 'pieces_colores.png';
-
+    
     $('#j1').hide();
     $('#j2').hide();
 
     myImg.onload = function () {
 
         /* ---#--- FONCTIONS & OBJETS ---#--- */
+        
+
+        $("#changerModeRotation").click(function(){
+            if (rotationPlateau == false) {
+                rotationPlateau = true;
+                $("#changerModeRotation").text("Mode : rotation")
+            } else {
+                rotationPlateau = false;
+                $("#changerModeRotation").text("Mode : sans rotation")
+            }
+        })
+        
 
 
         // affiche le quadrillage et instancie les objets cases
@@ -37,8 +51,8 @@ window.onload = function () {
                         ctx.fillStyle = "white";
                     }
                     if (cpt%2 === 1){
-                        couleur_fond = "silver";
-                        ctx.fillStyle = "silver";
+                        couleur_fond = "grey";
+                        ctx.fillStyle = "grey";
                     }
                     ctx.fillRect(i*tailleBloc, j*tailleBloc, tailleBloc, tailleBloc);
                     cases.push(new carre(couleur_fond, j, i));
@@ -153,7 +167,7 @@ window.onload = function () {
                 if (this.nom == "b_pion") {
                     this.mouvement = [[this.positionX, this.positionY-1]];
                     this.attaquesPossibles = [[this.positionX-1, this.positionY-1], [this.positionX+1, this.positionY-1]];
-
+                    
                     this.mouvementSpecial = [this.positionX, this.positionY-2];
                     if (this.aBouge == false) {
                         this.mouvement.push(this.mouvementSpecial);
@@ -203,7 +217,7 @@ window.onload = function () {
                 if (this.nom == "n_pion") {
                     this.mouvement = [[this.positionX, this.positionY+1]];
                     this.attaquesPossibles = [[this.positionX+1, this.positionY+1], [this.positionX-1, this.positionY+1]];
-
+                    
                     this.mouvementSpecial = [this.positionX, this.positionY+2];
                     if (this.aBouge == false) {
                         this.mouvement.push(this.mouvementSpecial);
@@ -320,7 +334,7 @@ window.onload = function () {
                             }
                     }
                 }
-
+                
                 // Défini les mouvements du fou et de la reine
                 if (this.nom.search("fou") != -1 || this.nom.search("dame") != -1) {
 
@@ -381,7 +395,7 @@ window.onload = function () {
             }
 
         }
-
+        
 //        function tournerImage(degre, x, y){
 //            ctx.clearRect(x,y,x + tailleBloc,y + tailleBloc);
 //            ctx.save();
@@ -443,15 +457,47 @@ window.onload = function () {
             }
             return {'x':x, 'y':y};
         }
-
+        
         function verifVictoire(){
             var roiBlanc = [];
+            var roiBlancDeplacements = [];
+            var victoire = [];
+            
             for (var i in pieces) {
+                if (pieces[i].nom[0] == "n") {
+                    for (var j = 0; j < pieces[i].mouvement.length; j++) {
+                        roiBlanc.push(pieces[i].mouvement[j]);
+                    }
+                }
                 if (pieces[i].nom == "b_roi") {
-                    roiBlanc = pieces[i].mouvement;
+                    for (var j = 0; j < pieces[i].mouvement.length; j++) {
+                        roiBlancDeplacements.push(pieces[i].mouvement[j]);
+                    }
                 }
             }
-            console.log(pieces[i].mouvement.length);
+            
+            for (var i in pieces) {
+                if (pieces[i].nom == "b_roi") {
+                    for (var j in roiBlanc) {
+                        if (roiBlanc[j][0] == pieces[i].positionX && roiBlanc[j][1] == pieces[i].positionY) {
+                            console.log("échec");
+                            
+                        }
+                    }
+                }
+            }
+            
+            
+            for (var j in roiBlancDeplacements) {
+                for (var k in roiBlanc) {
+                    if (roiBlancDeplacements[j][0] == roiBlanc[k][0] && roiBlancDeplacements[j][1] == roiBlanc[k][1]) {
+                        victoire[j] = 1;
+                    }
+                }
+            }
+            console.log(roiBlanc);
+            console.log(roiBlancDeplacements);
+            console.log(victoire);
         }
 
 
@@ -475,9 +521,8 @@ window.onload = function () {
             // position de la souris dans le canvas en case
             var x = parseInt(pixelX/tailleBloc);
             var y = parseInt(pixelY/tailleBloc);
-
-            if (cpt%2 != 0){
-
+            
+            if (cpt%2 != 0 && rotationPlateau == true){
                 x = nbBlocsLargeur - x - 1;
                 y = nbBlocsHauteur - y - 1;
             }
@@ -524,32 +569,33 @@ window.onload = function () {
                                 y = null;
 
 								cpt++;
-
                                 if (cpt%2 == 0){
                                     $('#j1').fadeIn('slow');
                                     $('#j1').fadeOut('slow');
-																		$('#pieces').rotation(180)
-																		canvas.className= "derotation";
+                                    if (rotationPlateau == true) {
+                                        canvas.className= "derotation";
+                                    } 
                                 } else {
                                     $('#j2').fadeIn('slow');
                                     $('#j2').fadeOut('slow');
-																		$('#pieces').rotation(180);
-																		canvas.className= "rotation";
+                                    if (rotationPlateau == true) {
+                                        canvas.className= "rotation";
+                                    }
                                 }
-
+                                
                             }
                         }
                     }
                 }
             }
 
-
+            
             if (cpt%2 == 0){
                 tour = "b";
             } else {
                 tour = "n";
             }
-
+            
             // permet de connaître les déplacments possibles d'un pion lorsqu'on clique dessus
             for (var k in pieces) {
                 if (x == pieces[k].positionX && y == pieces[k].positionY && pieces[k].vivant == true && pieces[k].equipe == tour) {
@@ -564,7 +610,7 @@ window.onload = function () {
                 }
             }
 
-
+            
             verifVictoire();
         }
 
