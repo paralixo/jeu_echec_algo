@@ -3,9 +3,13 @@
     margin: 0;
 }
 
+#poubelle_gauche {
+margin-left: 238.75px;
+}
+
 canvas {
     border: 1px black solid;
-    margin-left: 320px;
+    /*margin-left: 320px;*/
 
     /*transform: rotate(180 deg);*/
 }
@@ -26,7 +30,7 @@ canvas {
 
 div {
   position:absolute;
-  top : 285px ;
+  top : 243px ;
   left: 589px ;
 }
 
