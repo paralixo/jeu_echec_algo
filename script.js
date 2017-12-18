@@ -3,14 +3,21 @@ window.onload = function () {
 	var canvas = document.getElementById('canvas'),
 	    ctx = canvas.getContext('2d'),
 
-    //Variables utiles
+    //Variables globales
         tailleBloc = 81.25,
         width = 650,
         height = 650,
         nbBlocsLargeur = width / tailleBloc,
         nbBlocsHauteur = height / tailleBloc,
+        // Tableau d'objets contenant les cases du jeu
         cases = [],
+        // Tableau d'objets contenant les pieces du jeu
         pieces = [],
+        // Si le Roi est en echec
+        echecBlanc = false,
+        // En cas d'echec on ne peut pas jouer toutes les pieces
+        piecesJouables = [],
+        // Pour connaitre le tour (j1 ou j2) et modifier la rotation du plateau en conséquence
         cpt = 0 ,
         tour ,
         posPlateau = 0,
@@ -125,7 +132,8 @@ window.onload = function () {
         }
 
         // L'objet pièce avec x et y en cases pas en pixels
-        function piece(nom, x, y) {
+        function piece(nom, x, y, id) {
+            this.id = id;
             this.nom = nom;
             this.positionX = x;
             this.positionY = y;
@@ -206,7 +214,9 @@ window.onload = function () {
                             if (cases[j].positionX == this.mouvementsPossibles[i][0] && cases[j].positionY == this.mouvementsPossibles[i][1] && cases[j].contient[0] != this.nom[0]) {
                                 this.attaque.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);
                             } else if (cases[j].contient == "vide") {
-                                this.mouvement.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);
+                                if (this.mouvement[this.mouvement.length-1] != [this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]) {
+                                    this.mouvement.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);
+                                }
                             }
                         }
                     }
@@ -256,7 +266,9 @@ window.onload = function () {
                             if (cases[j].positionX == this.mouvementsPossibles[i][0] && cases[j].positionY == this.mouvementsPossibles[i][1] && cases[j].contient[0] != this.nom[0]) {
                                 this.attaque.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);
                             } else if (cases[j].contient == "vide") {
-                                this.mouvement.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);
+                                if (this.mouvement[this.mouvement.length-1] != [this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]) {
+                                    this.mouvement.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);
+                                }
                             }
                         }
                     }
@@ -326,13 +338,15 @@ window.onload = function () {
 
                         for (var i = 0; i<this.mouvementsPossibles.length; i++) {
                             for (var j in cases) {
-                                    if (cases[j].positionX == this.mouvementsPossibles[i][0] && cases[j].positionY == this.mouvementsPossibles[i][1] && cases[j].contient[0] != this.nom[0]) {
-                                            this.attaque.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);
-                                    } else if (cases[j].contient == "vide") {
-                                            this.mouvement.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);
+                                if (cases[j].positionX == this.mouvementsPossibles[i][0] && cases[j].positionY == this.mouvementsPossibles[i][1] && cases[j].contient[0] != this.nom[0]) {
+                                        this.attaque.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);
+                                } else if (cases[j].contient == "vide") {
+                                    if (this.mouvement[this.mouvement.length-1] != [this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]) {
+                                        this.mouvement.push([this.mouvementsPossibles[i][0], this.mouvementsPossibles[i][1]]);
                                     }
+                                }   
                             }
-                    }
+                        }   
                 }
                 
                 // Défini les mouvements du fou et de la reine
@@ -395,15 +409,6 @@ window.onload = function () {
             }
 
         }
-        
-//        function tournerImage(degre, x, y){
-//            ctx.clearRect(x,y,x + tailleBloc,y + tailleBloc);
-//            ctx.save();
-//            ctx.translate(canvas.width/2,canvas.height/2);
-//            ctx.rotate(degre*Math.PI/180);
-//            ctx.drawImage(myImg,-myImg.width/2,-myImg.width/2);
-//            ctx.restore();
-//        }
 
         // Permet d'afficher la portion d'image voulu pour les pieces
         function afficherImg(xImg, yImg, wImg, hImg, xPos, yPos, w, h) {
@@ -415,31 +420,31 @@ window.onload = function () {
             var i =0;
 
             while (i!=9) {
-                pieces.push(new piece("b_pion",i,6));
+                pieces.push(new piece("b_pion",i,6,i));
                 i++;
             }
-            pieces.push(new piece("b_tour",0,7));
-            pieces.push(new piece("b_tour",7,7));
-            pieces.push(new piece("b_cavalier",1,7));
-            pieces.push(new piece("b_cavalier",6,7));
-            pieces.push(new piece("b_fou",2,7));
-            pieces.push(new piece("b_fou",5,7));
-            pieces.push(new piece("b_dame",3,7));
-            pieces.push(new piece("b_roi",4,7));
+            pieces.push(new piece("b_tour",0,7,8));
+            pieces.push(new piece("b_tour",7,7,9));
+            pieces.push(new piece("b_cavalier",1,7,10));
+            pieces.push(new piece("b_cavalier",6,7,11));
+            pieces.push(new piece("b_fou",2,7,12));
+            pieces.push(new piece("b_fou",5,7,13));
+            pieces.push(new piece("b_dame",3,7,14));
+            pieces.push(new piece("b_roi",4,7,15));
 
             i =0;
             while (i!=9) {
-                pieces.push(new piece("n_pion",i,1));
+                pieces.push(new piece("n_pion",i,1,16+i));
                 i++;
             }
-            pieces.push(new piece("n_tour",0,0));
-            pieces.push(new piece("n_tour",7,0));
-            pieces.push(new piece("n_cavalier",1,0));
-            pieces.push(new piece("n_cavalier",6,0));
-            pieces.push(new piece("n_fou",2,0));
-            pieces.push(new piece("n_fou",5,0));
-            pieces.push(new piece("n_dame",3,0));
-            pieces.push(new piece("n_roi",4,0));
+            pieces.push(new piece("n_tour",0,0,24));
+            pieces.push(new piece("n_tour",7,0,25));
+            pieces.push(new piece("n_cavalier",1,0,26));
+            pieces.push(new piece("n_cavalier",6,0,27));
+            pieces.push(new piece("n_fou",2,0,28));
+            pieces.push(new piece("n_fou",5,0,29));
+            pieces.push(new piece("n_dame",3,0,30));
+            pieces.push(new piece("n_roi",4,0,31));
 
             actualisationPieces();
         }
@@ -459,45 +464,116 @@ window.onload = function () {
         }
         
         function verifVictoire(){
-            var roiBlanc = [];
             var roiBlancDeplacements = [];
+            var roiBlancAttaques = [];
             var victoire = [];
+            var reussite = true;
             
+            // Mets en mémoire tout les déplacements/attaques possible du jeu
             for (var i in pieces) {
+                // Pour determiner l'échec
                 if (pieces[i].nom[0] == "n") {
-                    for (var j = 0; j < pieces[i].mouvement.length; j++) {
-                        roiBlanc.push(pieces[i].mouvement[j]);
+                    for (var j in pieces[i].attaque) {
+                        roiBlancAttaques.push(pieces[i].attaque[j])
                     }
                 }
+                // Pour avoir les coordonnées autour du roi
                 if (pieces[i].nom == "b_roi") {
-                    for (var j = 0; j < pieces[i].mouvement.length; j++) {
-                        roiBlancDeplacements.push(pieces[i].mouvement[j]);
+                    for (var j in pieces[i].mouvementsPossibles) {
+                        roiBlancDeplacements.push(pieces[i].mouvementsPossibles[j]);
                     }
                 }
             }
             
+            // Permet de déterminer si le Roi est en échec ou pas
             for (var i in pieces) {
                 if (pieces[i].nom == "b_roi") {
-                    for (var j in roiBlanc) {
-                        if (roiBlanc[j][0] == pieces[i].positionX && roiBlanc[j][1] == pieces[i].positionY) {
-                            console.log("échec");
-                            
+                    for (var j in roiBlancAttaques) {
+                        if (roiBlancAttaques[j][0] == pieces[i].positionX && roiBlancAttaques[j][1] == pieces[i].positionY) {
+                            console.log("Echec");
+                            echecBlanc = true;
                         }
                     }
                 }
             }
             
-            
+            // Vérifie chaque case autour du roi pour déterminer le mat ou pas
             for (var j in roiBlancDeplacements) {
-                for (var k in roiBlanc) {
-                    if (roiBlancDeplacements[j][0] == roiBlanc[k][0] && roiBlancDeplacements[j][1] == roiBlanc[k][1]) {
-                        victoire[j] = 1;
-                    }
+                for (var k in pieces) {
+                    if (pieces[k].nom[0] == "n") {
+                        for (var l in pieces[k].mouvement) {
+                            // Si un ennemi peut attaquer les cases voisines au roi
+                            if (roiBlancDeplacements[j][0] == pieces[k].mouvement[l][0] && roiBlancDeplacements[j][1] == pieces[k].mouvement[l][1]) {
+                                victoire[j] = 1;
+                                console.log("Piece attaquant le roi blanc: ")
+                                console.log(pieces[k].nom);
+                                
+                                verifCase(pieces[k].nom);
+                            // Si il y a une piece autour
+                            } else {
+                                for (var m in cases) {
+                                    if (roiBlancDeplacements[j][0] == cases[m].positionX && roiBlancDeplacements[j][1] == cases[m].positionY) {
+                                        if (cases[m].contient != "vide") {
+                                            victoire[j] = 1;
+                                        }
+                                    }
+                                }
+                            }
+                            if (victoire[j] != 1) {
+                                victoire[j] = 0;
+                            }
+                        }
+                    }   
                 }
             }
-            console.log(roiBlanc);
-            console.log(roiBlancDeplacements);
+            
+            
+            
+            for (var i in victoire) {
+                if (victoire[i] == 0) {
+                    reussite = false;
+                }
+            }
+            if (reussite == true && echecBlanc == true) {
+                console.log("Echec et mat");
+            }
+            
+            console.log("-------------------------------")
+            console.log("Cases autour du Roi: ")
             console.log(victoire);
+            console.log(piecesJouables);
+        }
+        
+        // Permet de verifier la case ou se trouve l'attaquant dans la verification de la victoire
+        function verifCase(nomPiece) {
+            var attaquesPossibles = [];
+            var attaquant = [];
+            var rslt = [];
+            
+            for (var i in pieces) {
+                for (var j in pieces[i].attaque) {
+                    attaquesPossibles.push(pieces[i].attaque[j])
+                    attaquant.push(pieces[i].id)
+                } 
+            }
+            
+            for (var i in pieces) {
+                if (pieces[i].nom == nomPiece) {
+                    for (var j in attaquesPossibles) {
+                        if (attaquesPossibles[j][0] == pieces[i].positionX && attaquesPossibles[j][1] == pieces[i].positionY) {
+                            console.log("Personne pouvant attaquer " + nomPiece);
+                            console.log(attaquant[j]);
+                            rslt.push(attaquant[j])
+                        }
+                    }
+                }
+                
+                if (pieces[i].nom == "b_roi") {
+                    rslt.push(pieces[i].id)
+                }
+            }
+            
+            piecesJouables = rslt; 
         }
 
 
@@ -598,15 +674,32 @@ window.onload = function () {
             
             // permet de connaître les déplacments possibles d'un pion lorsqu'on clique dessus
             for (var k in pieces) {
-                if (x == pieces[k].positionX && y == pieces[k].positionY && pieces[k].vivant == true && pieces[k].equipe == tour) {
-                    console.log(pieces[k]);
-                    for (var j in pieces[k].mouvement) {
-                        prendrecouleurEvenement(pieces[k].mouvement[j][0], pieces[k].mouvement[j][1], "green", x, y);
+                if (echecBlanc == false || tour == "n") {
+                    if (x == pieces[k].positionX && y == pieces[k].positionY && pieces[k].vivant == true && pieces[k].equipe == tour) {
+                        console.log(pieces[k]);
+                        for (var j in pieces[k].mouvement) {
+                            prendrecouleurEvenement(pieces[k].mouvement[j][0], pieces[k].mouvement[j][1], "green", x, y);
+                        }
+                        for (var l in pieces[k].attaque) {
+                            prendrecouleurEvenement(pieces[k].attaque[l][0], pieces[k].attaque[l][1], "red", x, y);
+                        }
+                        actualisationPieces();
                     }
-                    for (var l in pieces[k].attaque) {
-                        prendrecouleurEvenement(pieces[k].attaque[l][0], pieces[k].attaque[l][1], "red", x, y);
-                    }
-                    actualisationPieces();
+                } else {
+                   for (var i in piecesJouables) {
+                       if (piecesJouables[i] == pieces[k].id) {
+                            if (x == pieces[k].positionX && y == pieces[k].positionY && pieces[k].vivant == true && pieces[k].equipe == tour) {
+                                console.log(pieces[k]);
+                                for (var j in pieces[k].mouvement) {
+                                    prendrecouleurEvenement(pieces[k].mouvement[j][0], pieces[k].mouvement[j][1], "green", x, y);
+                                }
+                                for (var l in pieces[k].attaque) {
+                                    prendrecouleurEvenement(pieces[k].attaque[l][0], pieces[k].attaque[l][1], "red", x, y);
+                                }
+                                actualisationPieces();
+                            }
+                       }
+                   }
                 }
             }
 
