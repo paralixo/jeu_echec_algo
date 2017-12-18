@@ -5,6 +5,12 @@
 
 #poubelle_gauche {
 margin-left: 238.75px;
+border: none;
+}
+
+#poubelle_droite {
+
+border: none;
 }
 
 canvas {

@@ -3,7 +3,13 @@ window.onload = function () {
 	var canvas = document.getElementById('canvas'),
 	    ctx = canvas.getContext('2d'),
 
-    //Variables utiles
+	 		poub_gauche = document.getElementById('poub_gauche'),
+			ctx_poub_gauche = poubelle_gauche.getContext('2d'),
+
+			poub_droite = document.getElementById('poub_droite'),
+			ctx_poub_droite = poubelle_droite.getContext('2d'),
+
+	  //Variables utiles
         tailleBloc = 81.25,
         width = 650,
         height = 650,
@@ -12,21 +18,21 @@ window.onload = function () {
         cases = [],
         pieces = [],
         cpt = 0 ,
-        tour ,
+        tour  ,
         posPlateau = 0,
-        
+
         rotationPlateau = false,
 		// On va chercher l'image et on attend qu'elle charge
         myImg = new Image();
     myImg.src = 'pieces_colores.png';
-    
+
     $('#j1').hide();
     $('#j2').hide();
 
     myImg.onload = function () {
 
         /* ---#--- FONCTIONS & OBJETS ---#--- */
-        
+
 
         $("#changerModeRotation").click(function(){
             if (rotationPlateau == false) {
@@ -37,7 +43,7 @@ window.onload = function () {
                 $("#changerModeRotation").text("Mode : sans rotation")
             }
         })
-        
+
 
 
         // affiche le quadrillage et instancie les objets cases
@@ -109,9 +115,9 @@ window.onload = function () {
         function actualisationPieces() {
             var i = 0;
             for (i in pieces) {
-                if (pieces[i].vivant == true) {
+                //if (pieces[i].vivant == true) {
                     pieces[i].init();
-                }
+                //}
             }
         }
 
@@ -167,7 +173,7 @@ window.onload = function () {
                 if (this.nom == "b_pion") {
                     this.mouvement = [[this.positionX, this.positionY-1]];
                     this.attaquesPossibles = [[this.positionX-1, this.positionY-1], [this.positionX+1, this.positionY-1]];
-                    
+
                     this.mouvementSpecial = [this.positionX, this.positionY-2];
                     if (this.aBouge == false) {
                         this.mouvement.push(this.mouvementSpecial);
@@ -179,25 +185,43 @@ window.onload = function () {
                         for (var j in cases) {
                             if (cases[j].positionX == this.attaquesPossibles[i][0] && cases[j].positionY == this.attaquesPossibles[i][1] && cases[j].contient[0] != this.nom[0]) {
                                 this.attaque.push([this.attaquesPossibles[i][0], this.attaquesPossibles[i][1]]);
-                            }
+
+														}
                         }
                     }
 
 
                     afficherImg(900, 275, 100, 370, x_pion+17, y_pion+5, 75, 280);
-                }
+										if (this.vivant==false){
+											ctx_poub_gauche.drawImage(myImg, 900, 275, 100, 370, 17, 406.25, 75, 280);
+											}
+								}
                 if (this.nom == "b_tour") {
-                    afficherImg(360, 275, 100, 370, x_pion+14.5, y_pion+7, 75, 280);
-                 }
+									afficherImg(360, 275, 100, 370, x_pion+14.5, y_pion+7, 75, 280);
+									if (this.vivant==false){
+										ctx_poub_gauche.drawImage(myImg, 360, 275, 100, 370, 13, 81.25, 75, 280);
+
+									}
+								 }
                 if (this.nom == "b_cavalier") {
                     afficherImg(705, 275, 100, 370, x_pion+4, y_pion+7, 75, 280);
-                 }
+										if (this.vivant==false){
+											ctx_poub_gauche.drawImage(myImg, 705, 275, 100, 370, 4, 162.5, 75, 280);
+
+										}
+								 }
                 if (this.nom == "b_fou") {
                     afficherImg(530, 265, 100, 380, x_pion+7, y_pion+6, 75, 280);
-                 }
+										if (this.vivant==false){
+											ctx_poub_gauche.drawImage(myImg, 530, 265, 100, 380, 7, 243.75, 75, 280);
+											}
+								 }
                 if (this.nom == "b_dame") {
                     afficherImg(170, 265, 100, 380, x_pion+3, y_pion+6, 75, 280);
-                 }
+										if (this.vivant==false){
+											ctx_poub_gauche.drawImage(myImg, 170, 265, 100, 380, 7, 325, 75, 280);
+											}
+								 }
                 if (this.nom == "b_roi") {
                     this.mouvementsPossibles = [[this.positionX-1, this.positionY-1], [this.positionX, this.positionY-1], [this.positionX+1, this.positionY-1], [this.positionX-1, this.positionY], [this.positionX+1, this.positionY], [this.positionX-1, this.positionY+1], [this.positionX+1, this.positionY+1], [this.positionX, this.positionY+1]];
 
@@ -212,12 +236,13 @@ window.onload = function () {
                     }
 
                     afficherImg(0, 265, 100, 380, x_pion+8, y_pion+4, 75, 280);
-                 }
+
+								 }
 
                 if (this.nom == "n_pion") {
                     this.mouvement = [[this.positionX, this.positionY+1]];
                     this.attaquesPossibles = [[this.positionX+1, this.positionY+1], [this.positionX-1, this.positionY+1]];
-                    
+
                     this.mouvementSpecial = [this.positionX, this.positionY+2];
                     if (this.aBouge == false) {
                         this.mouvement.push(this.mouvementSpecial);
@@ -235,19 +260,36 @@ window.onload = function () {
 
 
                     afficherImg(900, 125, 100, 100, x_pion+17, y_pion+5, 75, 75);
-                }
+										if (this.vivant==false){
+											ctx_poub_droite.drawImage(myImg, 900, 125, 100, 100, 17, 406.25, 75, 75);
+											}
+								}
                 if (this.nom == "n_tour") {
                     afficherImg(360, 125, 100, 100, x_pion+14.5, y_pion+7, 75, 75);
-                }
+										if (this.vivant==false){
+											ctx_poub_droite.drawImage(myImg, 360, 125, 100, 100, 14.5, 81.25, 75, 75);
+
+										}
+								}
                 if (this.nom == "n_cavalier") {
                     afficherImg(705, 125, 100, 100, x_pion+4, y_pion+7, 75, 75);
-                }
+										if (this.vivant==false){
+											ctx_poub_droite.drawImage(myImg, 705, 125, 100, 100, 4, 162.5, 75, 75);
+
+										}
+								}
                 if (this.nom == "n_fou") {
                     afficherImg(530, 115, 100, 100, x_pion+7, y_pion+6, 75, 75);
-                }
+										if (this.vivant==false){
+											ctx_poub_droite.drawImage(myImg, 530, 115, 100, 100, 7, 243.75, 75, 75);
+											}
+								}
                 if (this.nom == "n_dame") {
                     afficherImg(170, 115, 100, 100, x_pion+3, y_pion+6, 75, 75);
-                }
+										if (this.vivant==false){
+											ctx_poub_droite.drawImage(myImg, 170, 115, 100, 100, 7, 325, 75, 75);
+											}
+								}
                 if (this.nom == "n_roi") {
                     this.mouvementsPossibles = [[this.positionX-1, this.positionY-1], [this.positionX, this.positionY-1], [this.positionX+1, this.positionY-1], [this.positionX-1, this.positionY], [this.positionX+1, this.positionY], [this.positionX-1, this.positionY+1], [this.positionX+1, this.positionY+1], [this.positionX, this.positionY+1]];
 
@@ -317,7 +359,7 @@ window.onload = function () {
                         }
                     }
             //                this.attaque = this.mouvement;
-                    this.mouvementSpecial = "le truc avec le roi";
+                    this.mouvementSpecial = "le roque";
                 }
 
                 // Défini les mouvements du cavalier
@@ -334,7 +376,7 @@ window.onload = function () {
                             }
                     }
                 }
-                
+
                 // Défini les mouvements du fou et de la reine
                 if (this.nom.search("fou") != -1 || this.nom.search("dame") != -1) {
 
@@ -388,14 +430,14 @@ window.onload = function () {
                     }
                 }
         //                this.attaque = this.mouvement;
-                this.mouvementSpecial = "le truc avec le roi";
+                this.mouvementSpecial = "le roque";
             }
 
 
             }
 
         }
-        
+
 //        function tournerImage(degre, x, y){
 //            ctx.clearRect(x,y,x + tailleBloc,y + tailleBloc);
 //            ctx.save();
@@ -457,12 +499,12 @@ window.onload = function () {
             }
             return {'x':x, 'y':y};
         }
-        
+
         function verifVictoire(){
             var roiBlanc = [];
             var roiBlancDeplacements = [];
             var victoire = [];
-            
+
             for (var i in pieces) {
                 if (pieces[i].nom[0] == "n") {
                     for (var j = 0; j < pieces[i].mouvement.length; j++) {
@@ -475,19 +517,19 @@ window.onload = function () {
                     }
                 }
             }
-            
+
             for (var i in pieces) {
                 if (pieces[i].nom == "b_roi") {
                     for (var j in roiBlanc) {
                         if (roiBlanc[j][0] == pieces[i].positionX && roiBlanc[j][1] == pieces[i].positionY) {
                             console.log("échec");
-                            
+
                         }
                     }
                 }
             }
-            
-            
+
+
             for (var j in roiBlancDeplacements) {
                 for (var k in roiBlanc) {
                     if (roiBlancDeplacements[j][0] == roiBlanc[k][0] && roiBlancDeplacements[j][1] == roiBlanc[k][1]) {
@@ -521,7 +563,7 @@ window.onload = function () {
             // position de la souris dans le canvas en case
             var x = parseInt(pixelX/tailleBloc);
             var y = parseInt(pixelY/tailleBloc);
-            
+
             if (cpt%2 != 0 && rotationPlateau == true){
                 x = nbBlocsLargeur - x - 1;
                 y = nbBlocsHauteur - y - 1;
@@ -548,8 +590,8 @@ window.onload = function () {
                                     for (var n in pieces) {
                                         if (cases[i].positionX == pieces[n].positionX && cases[i].positionY == pieces[n].positionY) {
                                             pieces[n].vivant = false;
-                                            pieces[n].positionX = null;
-                                            pieces[n].positionY = null;
+                                            pieces[n].positionX = 99999;
+                                            pieces[n].positionY = 99999;
                                             effacerCouleurEvenement();
                                             pieces[n].suppr();
                                         }
@@ -574,7 +616,7 @@ window.onload = function () {
                                     $('#j1').fadeOut('slow');
                                     if (rotationPlateau == true) {
                                         canvas.className= "derotation";
-                                    } 
+                                    }
                                 } else {
                                     $('#j2').fadeIn('slow');
                                     $('#j2').fadeOut('slow');
@@ -582,20 +624,20 @@ window.onload = function () {
                                         canvas.className= "rotation";
                                     }
                                 }
-                                
+
                             }
                         }
                     }
                 }
             }
 
-            
+
             if (cpt%2 == 0){
                 tour = "b";
             } else {
                 tour = "n";
             }
-            
+
             // permet de connaître les déplacments possibles d'un pion lorsqu'on clique dessus
             for (var k in pieces) {
                 if (x == pieces[k].positionX && y == pieces[k].positionY && pieces[k].vivant == true && pieces[k].equipe == tour) {
@@ -610,7 +652,7 @@ window.onload = function () {
                 }
             }
 
-            
+
             verifVictoire();
         }
 
