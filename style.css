@@ -40,6 +40,13 @@ div {
   left: 589px ;
 }
 
+#echecs {
+    top: 700px;
+    color: red;
+    font-size: 32px;
+    text-align: center;
+}
+
 
 /* GERE LA ROTATION DU PLATEAU */
 
